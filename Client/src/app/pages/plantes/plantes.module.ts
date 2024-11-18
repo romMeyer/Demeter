@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PlanteDto } from "../..\core\Dto\PlanteDto"
-
+import { PlantesComponent } from './plantes/plantes.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PlantesComponent,
+  ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    SharedModule,
+    
+]
 })
 export class PlantesModule { }
