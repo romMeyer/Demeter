@@ -8,7 +8,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PlantesModule } from './pages/plantes/plantes.module';
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -20,7 +19,7 @@ import { PlantesModule } from './pages/plantes/plantes.module';
     MatIconModule,
     HomeComponent,
     HttpClientModule,
-    PlantesModule
+    PlantesModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

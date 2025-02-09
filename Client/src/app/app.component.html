@@ -1,7 +1,7 @@
 <mat-drawer-container class="main">
   <mat-drawer mode="side" opened>
+
     <div class="navbar">
-    
       <a routerLink="/home"><img src="./assets/logo.png" alt="Demeter Logo" height="150" width="150" priority></a>
       <a mat-stroked-button routerLink="/plantes" class="navbarButton">Mes plantes</a>
       <a mat-stroked-button routerLink="/catalogue" class="navbarButton">Catalogue</a>
@@ -9,9 +9,10 @@
     </div>
 
   </mat-drawer>
+
+
   <mat-drawer-content>
     <router-outlet></router-outlet>
-
   </mat-drawer-content>
   
 </mat-drawer-container>
