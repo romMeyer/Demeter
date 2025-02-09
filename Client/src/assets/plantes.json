@@ -1,0 +1,23 @@
+{
+    "plantes": [
+        {"id":1, "libelle":"Tomate", "type":"fruit", "image":"tomate"},
+        {"id":2, "libelle":"Fraise", "type":"fruit", "image":"fraise"},
+        {"id":3, "libelle":"Framboise", "type":"fruit", "image":"framboise"},
+        {"id":4, "libelle":"Mirabelle", "type":"fruit", "image":"mirabelle"},
+        {"id":5, "libelle":"Raisin", "type":"fruit", "image":"raisin"},
+        {"id":6, "libelle":"Carotte", "type":"legume", "image":"carotte"},
+        {"id":7, "libelle":"Patate", "type":"legume", "image":"patate"},
+        {"id":8, "libelle":"Radis", "type":"legume", "image":"radis"},
+        {"id":9, "libelle":"Chou", "type":"legume", "image":"chou"},
+        {"id":10, "libelle":"Aubergine", "type":"legume", "image":"aubergine"},
+        {"id":11, "libelle":"Butternut", "type":"legume", "image":"butternut"}
+    ],
+
+    "plantesUser": [
+    {"id": 4, "libelle": "Mirabelle", "image": "mirabelle", "arrosage": "2025-02-09T08:00:00.000Z", "arrose": "2025-02-13T18:30:00.000Z"},
+    {"id": 5, "libelle": "Raisin", "image": "raisin", "arrosage": "2025-02-10T09:00:00.000Z", "arrose": "2025-02-13T19:15:00.000Z"},
+    {"id": 6, "libelle": "Carotte", "image": "carotte", "arrosage": "2025-02-10T10:00:00.000Z", "arrose": "2025-02-13T20:00:00.000Z"},
+    {"id": 7, "libelle": "Patate", "image": "patate", "arrosage": "2025-02-10T11:00:00.000Z",  "arrose": "2025-02-13T21:00:00.000Z"},
+    {"id": 8, "libelle": "Radis", "image": "radis", "arrosage": "2025-02-10T12:00:00.000Z", "arrose": "2025-02-13T22:00:00.000Z"}
+  ]
+}
