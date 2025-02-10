@@ -4,6 +4,8 @@ import { PlanteService } from '../../../services/PlanteService';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogueComponent } from '../../../shared/dialogue/dialogue.component';
  
 
 @Component({
@@ -12,12 +14,12 @@ import { MatSort } from '@angular/material/sort';
   styleUrl: './plantes.component.scss'
 })
 export class PlantesComponent {
-  plantes!: MatTableDataSource<PlanteUserDto>;
+  plantes = new MatTableDataSource<PlanteUserDto>([]);
   displayedColumns: string[] = ['image', 'libelle', 'arrosage' ,'arrose', 'actions'];
   value: string = '';
 
 
-  constructor(private planteService: PlanteService){}
+  constructor(private planteService: PlanteService, public dialogue: MatDialog){}
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -31,7 +33,7 @@ export class PlantesComponent {
         arrose: formatDateToRelative(plante.arrose)
       }));
   
-      this.plantes = new MatTableDataSource(plantesFormatted);
+      this.plantes.data = plantesFormatted;
 
       this.plantes.filterPredicate = (data: PlanteUserDto, filter: string) => {
         return data.libelle?.toLowerCase().includes(filter);
@@ -52,7 +54,19 @@ export class PlantesComponent {
     this.plantes.paginator = this.paginator;
     this.plantes.sort = this.sort;
   }
-  
+
+  arroserDialogue(plante: PlanteUserDto): void {
+    const dialogRef = this.dialogue.open(DialogueComponent, {
+      width: '300px',
+      data: {title:"Confirmer l'arrosage", question:"Voulez-vous arroser ", libellePlante: plante.libelle }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(`${plante.libelle} a été arrosé !`);
+      }
+    });
+  }
 
 }
 
