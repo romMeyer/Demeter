@@ -1,6 +1,6 @@
 export interface PlanteDto{
-    id?: number,
-    libelle?: String;
+    id: number,
+    libelle: String;
     type?: String; // id plus tard
     description?: String;
 }

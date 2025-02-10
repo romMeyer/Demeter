@@ -3,6 +3,8 @@ import { PlanteUserDto } from '../../../core/Dto/PlanteUserDto';
 import { PlanteService } from '../../../services/PlanteService';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+ 
 
 @Component({
   selector: 'app-plantes',
@@ -11,12 +13,14 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class PlantesComponent {
   plantes!: MatTableDataSource<PlanteUserDto>;
-  displayedColumns: string[] = ['libelle', 'image', 'arrosage' ,'arrose', 'actions'];
+  displayedColumns: string[] = ['image', 'libelle', 'arrosage' ,'arrose', 'actions'];
+  value: string = '';
 
 
   constructor(private planteService: PlanteService){}
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit(): void {
     this.planteService.getPlantes().subscribe(data => {
@@ -28,16 +32,27 @@ export class PlantesComponent {
       }));
   
       this.plantes = new MatTableDataSource(plantesFormatted);
-    });
-  }
 
-  ngAfterViewInit() {
-    this.plantes.paginator = this.paginator;
+      this.plantes.filterPredicate = (data: PlanteUserDto, filter: string) => {
+        return data.libelle?.toLowerCase().includes(filter);
+      };
+    });
   }
 
   arroserPlante(plante: PlanteUserDto): void {
      console.log(`${plante.libelle} a été arrosée !`);
   }
+
+  applyFilter(value: string): void {
+    const filterValue = value;
+    this.plantes.filter = filterValue;
+  }
+
+  ngAfterViewInit() {
+    this.plantes.paginator = this.paginator;
+    this.plantes.sort = this.sort;
+  }
+  
 
 }
 
@@ -53,8 +68,10 @@ function formatDateToRelative(dateString: Date): string {
   const joursSemaine = ["Dimanche","Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
   const jourSemaine = joursSemaine[date.getDay()];
 
-  if(diffDays === 0){
+  if (diffDays === 0){
     return `Aujourd'hui`;
+  } else if (diffDays < 0){
+    return `Il y a ${Math.abs(diffDays)} jour(s) : (${jourSemaine})`
   }
 
   return `Dans ${diffDays} jour(s) : (${jourSemaine})`;

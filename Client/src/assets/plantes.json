@@ -10,14 +10,19 @@
         {"id":8, "libelle":"Radis", "type":"legume", "image":"radis"},
         {"id":9, "libelle":"Chou", "type":"legume", "image":"chou"},
         {"id":10, "libelle":"Aubergine", "type":"legume", "image":"aubergine"},
-        {"id":11, "libelle":"Butternut", "type":"legume", "image":"butternut"}
+        {"id":11, "libelle":"Butternut", "type":"legume", "image":"butternut"},
+        {"id":12, "libelle":"Citron", "type":"fruit", "image":"citron"},
+        {"id":13, "libelle":"Orange", "type":"legume", "image":"orange"},
+        {"id":14, "libelle":"Navet", "type":"legume", "image":"navet"},
+        {"id":15, "libelle":"Salade", "type":"legume", "image":"salade"}
+
     ],
 
     "plantesUser": [
-    {"id": 4, "libelle": "Mirabelle", "image": "mirabelle", "arrosage": "2025-02-09T08:00:00.000Z", "arrose": "2025-02-13T18:30:00.000Z"},
-    {"id": 5, "libelle": "Raisin", "image": "raisin", "arrosage": "2025-02-10T09:00:00.000Z", "arrose": "2025-02-13T19:15:00.000Z"},
-    {"id": 6, "libelle": "Carotte", "image": "carotte", "arrosage": "2025-02-10T10:00:00.000Z", "arrose": "2025-02-13T20:00:00.000Z"},
-    {"id": 7, "libelle": "Patate", "image": "patate", "arrosage": "2025-02-10T11:00:00.000Z",  "arrose": "2025-02-13T21:00:00.000Z"},
-    {"id": 8, "libelle": "Radis", "image": "radis", "arrosage": "2025-02-10T12:00:00.000Z", "arrose": "2025-02-13T22:00:00.000Z"}
+    {"id": 4, "libelle": "Mirabelle", "image": "mirabelle", "arrosage": "2025-02-09T00:00:00.000Z", "arrose": "2025-02-13T00:00:00.000Z"},
+    {"id": 5, "libelle": "Raisin", "image": "raisin", "arrosage": "2025-02-10T09:00:00.000Z", "arrose": "2025-02-13T00:00:00.000Z"},
+    {"id": 6, "libelle": "Carotte", "image": "carotte", "arrosage": "2025-02-10T00:00:00.000Z", "arrose": "2025-02-12T00:00:00.000Z"},
+    {"id": 7, "libelle": "Patate", "image": "patate", "arrosage": "2025-02-10T00:00:00.000Z",  "arrose": "2025-02-15T00:00:00.000Z"},
+    {"id": 8, "libelle": "Radis", "image": "radis", "arrosage": "2025-02-10T00:00:00.000Z", "arrose": "2025-02-14T00:00:00.000Z"}
   ]
 }

@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatPaginatorModule } from '@angular/material/paginator'; 
-import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar'; 
+import { TitleComponent } from './title/title.component';
 
 
 @NgModule({
   declarations: [
+    TitleComponent
   ],
   imports: [
     CommonModule,
-    MatPaginatorModule,
-    MatTableModule
+    MatToolbarModule
+  ],
+  exports :[
+    TitleComponent
   ]
 })
 export class SharedModule { }
