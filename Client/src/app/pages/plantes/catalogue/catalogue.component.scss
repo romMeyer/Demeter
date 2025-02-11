@@ -1,6 +1,8 @@
+@use "../../../../styles.scss" as styles;
+
 table{
     width: 100%;
-    background-color: rgba(50, 50, 50, 0.4);
+    background-color: rgba(styles.$primary-color, 0.2);
 }
 
 .container{
@@ -17,8 +19,8 @@ img {
 }
 
 mat-paginator{
-    background-color: rgba(50, 50, 50, 0.9);
-  }
+    background-color: rgba(styles.$primary-color, 0.8);
+}
 
 .bg{
     width: 100%;

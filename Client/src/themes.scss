@@ -1,8 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-@import "@angular/material/theming";
+$my-primary: mat.define-palette(mat.$brown-palette, A400);
+$my-accent: mat.define-palette(mat.$orange-palette, 600);
+$my-warn: mat.define-palette(mat.$red-palette);
 
-@include mat-core();
+// Définition du thème global
+$my-theme: mat.define-light-theme((
+  color: (
+    primary: $my-primary,
+    accent: $my-accent,
+    warn: $my-warn,
+  )
+));
+
+@include mat.all-component-themes($my-theme);

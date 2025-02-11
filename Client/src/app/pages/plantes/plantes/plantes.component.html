@@ -1,7 +1,7 @@
 <app-title title="Vos plantes"></app-title>
 
 <div class="bg">
-    <mat-form-field class="form" color="accent">
+    <mat-form-field class="form" color="primary">
         <mat-label>Rechercher une plante</mat-label>
         <input (keyup)="applyFilter(value)" matInput type="text" [(ngModel)]="value">
         @if (value) {
@@ -47,7 +47,7 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> Action </th>
                 <td mat-cell *matCellDef="let element">
-                    <button mat-flat-button color="primary" (click)="arroserDialogue(element)">
+                    <button mat-flat-button color="accent" (click)="arroserDialogue(element)">
                         Arroser
                     </button>
                 </td>

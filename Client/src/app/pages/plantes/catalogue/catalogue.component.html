@@ -1,6 +1,6 @@
 <app-title title="Catalogue de plante"></app-title>
 <div class="bg">
-    <mat-form-field class="form" color="accent">
+    <mat-form-field class="form" color="primary">
         <mat-label>Rechercher une plante</mat-label>
         <input (keyup)="applyFilter(value)" matInput type="text" [(ngModel)]="value">
         @if (value) {
@@ -17,28 +17,28 @@
             <!-- Libellé Column -->
             <ng-container matColumnDef="libelle">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Libellé </th>
-                <td mat-cell *matCellDef="let element"> {{element.libelle}} </td>
+                <td mat-cell *matCellDef="let plante"> {{plante.libelle}} </td>
             </ng-container>
 
             <!-- Image Column -->
             <ng-container matColumnDef="image">
                 <th mat-header-cell *matHeaderCellDef> Image </th>
-                <td mat-cell *matCellDef="let element">
-                    <img [src]="'assets/images/' + element.image + '.png'" alt="{{element.libelle}}" width="150">
+                <td mat-cell *matCellDef="let plante">
+                    <img [src]="'assets/images/' + plante.image + '.png'" alt="{{plante.libelle}}" width="150">
                 </td>
             </ng-container>
         
             <!-- Type Column -->
             <ng-container matColumnDef="type">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
-                <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+                <td mat-cell *matCellDef="let plante"> {{plante.type}} </td>
             </ng-container>
 
             <!-- Nouvelle colonne pour le bouton "Arroser" -->
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> Action </th>
-                <td mat-cell *matCellDef="let element">
-                    <button mat-flat-button color="primary" (click)="ajouterDialogue(element)">
+                <td mat-cell *matCellDef="let plante">
+                    <button mat-flat-button color="accent" (click)="ajouterDialogue(plante)">
                         Ajouter
                     </button>
                 </td>
