@@ -76,6 +76,8 @@ export class PlantesComponent {
     });
   }
 
+  actionHandler = (plante: any) => this.arroserDialogue(plante);
+
 }
 
 function formatDateToRelative(dateString: Date): string {

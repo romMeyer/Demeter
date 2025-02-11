@@ -20,7 +20,7 @@ export class CatalogueComponent {
   value: string = '';
 
 
-  constructor(private planteService: PlanteService, public dialogue: MatDialog, private info: MatSnackBar){}
+  constructor(private planteService: PlanteService, private dialogue: MatDialog, private info: MatSnackBar){}
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -73,4 +73,6 @@ export class CatalogueComponent {
     this.plantes.paginator = this.paginator;
     this.plantes.sort = this.sort;
   }
+
+  actionHandler = (plante: any) => this.ajouterDialogue(plante);
 }

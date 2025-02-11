@@ -6,7 +6,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogueComponent } from './dialogue/dialogue.component';
 import { MatButtonModule } from '@angular/material/button';
 import { InfoComponent } from './info/info.component';
-import { MatIcon } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { PlanteListeComponent } from './plante-liste/plante-liste.component';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -14,6 +20,7 @@ import { MatIcon } from '@angular/material/icon';
     TitleComponent,
     DialogueComponent,
     InfoComponent,
+    PlanteListeComponent
 
   ],
   imports: [
@@ -21,13 +28,20 @@ import { MatIcon } from '@angular/material/icon';
     MatToolbarModule,
     MatDialogModule,
     MatButtonModule ,
-    MatIcon
+    MatIconModule,
+    MatFormFieldModule,
+    MatLabel,
+    MatPaginatorModule,
+    MatTableModule,
+    FormsModule,
+    MatInputModule,
 
   ],
   exports :[
     TitleComponent,
     DialogueComponent,
-    InfoComponent
+    InfoComponent,
+    PlanteListeComponent
   ]
 })
 export class SharedModule { }
