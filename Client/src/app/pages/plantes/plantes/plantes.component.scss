@@ -5,8 +5,18 @@ table{
     background-color: rgba(styles.$primary-color, 0.2);
 }
 
+th{
+  font-size: 20px; 
+  font-weight: bold;
+}
+
+td{
+  font-size: 18px;
+}
+
 .container{
   height: 100%;
+  font-weight: bold;
 }
 
 img {

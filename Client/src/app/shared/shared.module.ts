@@ -5,23 +5,29 @@ import { TitleComponent } from './title/title.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogueComponent } from './dialogue/dialogue.component';
 import { MatButtonModule } from '@angular/material/button';
+import { InfoComponent } from './info/info.component';
+import { MatIcon } from '@angular/material/icon';
 
 
 @NgModule({
   declarations: [
     TitleComponent,
-    DialogueComponent
+    DialogueComponent,
+    InfoComponent,
+
   ],
   imports: [
     CommonModule,
     MatToolbarModule,
     MatDialogModule,
-    MatButtonModule 
+    MatButtonModule ,
+    MatIcon
 
   ],
   exports :[
     TitleComponent,
-    DialogueComponent
+    DialogueComponent,
+    InfoComponent
   ]
 })
 export class SharedModule { }

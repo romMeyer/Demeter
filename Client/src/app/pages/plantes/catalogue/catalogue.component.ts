@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { DialogueComponent } from '../../../shared/dialogue/dialogue.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { InfoComponent } from '../../../shared/info/info.component';
 
 @Component({
   selector: 'app-catalogue',
@@ -18,7 +20,7 @@ export class CatalogueComponent {
   value: string = '';
 
 
-  constructor(private planteService: PlanteService, public dialogue: MatDialog){}
+  constructor(private planteService: PlanteService, public dialogue: MatDialog, private info: MatSnackBar){}
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -51,7 +53,13 @@ export class CatalogueComponent {
   
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          console.log(`${plante.libelle} a été ajouté !`);
+          this.info.openFromComponent(InfoComponent, {
+            duration: 3000, // Temps d'affichage
+            verticalPosition: 'top',
+            horizontalPosition: 'center',
+            panelClass: ['custom-snackbar'], // Style personnalisé
+            data: { accentuateWord: `${plante.libelle}`, content: 'a été ajouté !' }
+          });
         }
       });
     }
