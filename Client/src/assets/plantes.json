@@ -23,6 +23,6 @@
     {"id": 5, "libelle": "Raisin", "image": "raisin", "arrosage": "2025-02-10T09:00:00.000Z", "arrose": "2025-02-13T00:00:00.000Z"},
     {"id": 6, "libelle": "Carotte", "image": "carotte", "arrosage": "2025-02-10T00:00:00.000Z", "arrose": "2025-02-12T00:00:00.000Z"},
     {"id": 7, "libelle": "Patate", "image": "patate", "arrosage": "2025-02-10T00:00:00.000Z",  "arrose": "2025-02-15T00:00:00.000Z"},
-    {"id": 8, "libelle": "Radis", "image": "radis", "arrosage": "2025-02-10T00:00:00.000Z", "arrose": "2025-02-14T00:00:00.000Z"}
+    {"id": 8, "libelle": "Citron", "type": "fruit", "image": "citron", "arrosage": "2025-02-10T00:00:00.000Z", "arrose": "2025-02-14T00:00:00.000Z"}
   ]
 }

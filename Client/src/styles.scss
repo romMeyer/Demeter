@@ -6,14 +6,13 @@
 
 @include mat.core();
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-::ng-deep .mat-dialog-container {
-    position: fixed !important;  // Fixe la position
-    transform: translate(-50%, -50%) !important;  // Applique le décalage pour centrer
-    z-index: 1050 !important;  // S'assure que le dialogue est au-dessus des autres éléments
-}
 
 $primary-color: mat.get-theme-color(themes.$my-theme, primary);
 $accent-color: mat.get-theme-color(themes.$my-theme, accent);
 $warn-color: mat.get-theme-color(themes.$my-theme, warn);
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-image: url("./assets/background.png");}
+
+mat-typography{
+    height: 100vh;  
+}

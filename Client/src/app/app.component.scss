@@ -1,9 +1,8 @@
 @use "../styles.scss" as styles;
 
 .main{
-    width: 100%;
+    background-image: url("../assets/background.png");
     height: 100%;
-    background-color: styles.$primary-color;
 }
 
 
