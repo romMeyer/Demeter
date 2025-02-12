@@ -8,15 +8,29 @@ import { DialogueComponent } from '../../../shared/dialogue/dialogue.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { InfoComponent } from '../../../shared/info/info.component';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-catalogue',
   templateUrl: './catalogue.component.html',
-  styleUrl: './catalogue.component.scss'
+  styleUrl: './catalogue.component.scss',
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: {
+        subscriptSizing: 'dynamic'
+      }
+    }
+  ],
 })
 export class CatalogueComponent {
   plantes = new MatTableDataSource<PlanteDto>([]);  
   displayedColumns: string[] = ['libelle', 'image', 'type', 'actions'];
+  columnsConfig: {key: string, label: string}[] = [
+    { key: 'libelle', label: 'Libellé' },
+    { key: 'image', label: 'Image' },
+    { key: 'type', label: 'Type' }
+  ]
   value: string = '';
 
 

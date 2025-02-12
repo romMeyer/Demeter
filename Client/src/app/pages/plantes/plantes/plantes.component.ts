@@ -18,6 +18,12 @@ import { InfoComponent } from '../../../shared/info/info.component';
 export class PlantesComponent {
   plantes = new MatTableDataSource<PlanteUserDto>([]);
   displayedColumns: string[] = ['image', 'libelle', 'arrosage' ,'arrose', 'actions'];
+  columnsConfig: {key: string, label: string}[] = [
+    { key: 'libelle', label: 'Libellé' },
+    { key: 'image', label: 'Image' },
+    { key: 'arrosage', label: 'Arrosé le' },
+    { key: 'arrose', label: 'A arrosé' }
+]
   value: string = '';
 
 

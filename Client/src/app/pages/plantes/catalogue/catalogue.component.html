@@ -4,12 +4,8 @@
     <app-plante-liste
         title="Catalogue de plante"
         [data]="plantes.data"
-        [displayedColumns]="['libelle', 'image', 'type', 'actions']"
-        [columnsConfig]="[
-            { key: 'libelle', label: 'Libellé' },
-            { key: 'image', label: 'Image' },
-            { key: 'type', label: 'Type' }
-        ]"
+        [displayedColumns]="displayedColumns"
+        [columnsConfig]="columnsConfig"
         actionLabel="Ajouter"
         [actionHandler]="actionHandler">
     </app-plante-liste>

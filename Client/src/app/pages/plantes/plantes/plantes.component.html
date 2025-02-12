@@ -4,13 +4,8 @@
     <app-plante-liste
         title="Vos plantes"
         [data]="plantes.data"
-        [displayedColumns]="['libelle', 'image', 'arrosage', 'arrose', 'actions']"
-        [columnsConfig]="[
-            { key: 'libelle', label: 'Libellé' },
-            { key: 'image', label: 'Image' },
-            { key: 'arrosage', label: 'Arrosé le' },
-            { key: 'arrose', label: 'A arrosé' }
-        ]"
+        [displayedColumns]="displayedColumns"
+        [columnsConfig]="columnsConfig"
         actionLabel="Arroser"
         [actionHandler]="actionHandler">
     </app-plante-liste>
