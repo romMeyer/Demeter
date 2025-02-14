@@ -15,12 +15,12 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
   templateUrl: './catalogue.component.html',
   styleUrl: './catalogue.component.scss',
   providers: [
-    {
+    /*{
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {
         subscriptSizing: 'dynamic'
       }
-    }
+    }*/
   ],
 })
 export class CatalogueComponent {

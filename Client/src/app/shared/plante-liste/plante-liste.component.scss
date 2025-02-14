@@ -3,6 +3,7 @@
 table{
   width: 100%;
   background-color: rgba(styles.$primary-color, 0.2);
+  table-layout: fixed;
 }
 
 th{
