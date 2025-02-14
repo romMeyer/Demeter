@@ -72,10 +72,10 @@ export class PlantesComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.info.openFromComponent(InfoComponent, {
-          duration: 3000, // Temps d'affichage
+          duration: 3000,
           verticalPosition: 'top',
           horizontalPosition: 'center',
-          panelClass: ['custom-snackbar'], // Style personnalisé
+          panelClass: ['custom-snackbar'],
           data: { accentuateWord: `${plante.libelle}`, content: 'a été arrosé !' }
         });
       }

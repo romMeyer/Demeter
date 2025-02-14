@@ -13,6 +13,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { MatInputModule } from '@angular/material/input';
     MatTableModule,
     FormsModule,
     MatInputModule,
+    MatProgressBarModule,
 
   ],
   exports :[

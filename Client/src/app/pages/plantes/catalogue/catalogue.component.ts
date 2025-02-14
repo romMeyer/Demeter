@@ -71,7 +71,6 @@ export class CatalogueComponent {
             duration: 3000, // Temps d'affichage
             verticalPosition: 'top',
             horizontalPosition: 'center',
-            panelClass: ['custom-snackbar'], // Style personnalisé
             data: { accentuateWord: `${plante.libelle}`, content: 'a été ajouté !' }
           });
         }
