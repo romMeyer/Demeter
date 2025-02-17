@@ -5,15 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto implements Serializable {
+public class RegisterUserDto {
+    @JsonProperty
+    private String username;
 
     @JsonProperty
-    private Integer id;
+    private String password;
 
     @JsonProperty
     private String firstName;
@@ -21,6 +21,4 @@ public class UserDto implements Serializable {
     @JsonProperty
     private String lastName;
 
-    @JsonProperty
-    private String username;
 }

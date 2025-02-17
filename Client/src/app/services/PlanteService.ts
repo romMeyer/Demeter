@@ -12,6 +12,6 @@ export class PlanteService {
   constructor(private http: HttpClient) { }
 
   getPlantes(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/api/plants");
+    return this.http.get<any>(this.apiUrl + "/api-open/plants");
   }
 }

@@ -24,3 +24,8 @@ spring:
   jackson:
     serialization:
       indent_output: true
+
+security:
+  jwt:
+    expiration-time: 3600000
+    secret-key: aae336920139b59f88f8983b27d579acebfe6ed19f84f580fe35fcc9df6f950f
