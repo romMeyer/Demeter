@@ -21,3 +21,6 @@ spring:
     locations: classpath:db/migration
     create-schemas: true
     default-schema: demeter
+  jackson:
+    serialization:
+      indent_output: true

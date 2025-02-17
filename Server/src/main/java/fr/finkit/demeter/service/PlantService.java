@@ -31,5 +31,9 @@ public class PlantService {
     public void deletePlant(Long id) {
         plantRepository.deleteById(id);
     }
+
+    public List<Plant> findAllByUserId(Long userId) {
+        return plantRepository.findAllByUserId(userId);
+    }
 }
 

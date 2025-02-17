@@ -6,11 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PlanteService {
+  private apiUrl = 'http://localhost:8080'; 
   private jsonUrl = './assets/plantes.json';
 
   constructor(private http: HttpClient) { }
 
   getPlantes(): Observable<any> {
-    return this.http.get<any>(this.jsonUrl);
+    return this.http.get<any>(this.apiUrl + "/api/plants");
   }
 }
