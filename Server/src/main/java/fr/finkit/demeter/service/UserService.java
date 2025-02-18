@@ -35,8 +35,18 @@ public class UserService {
     public User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+        if (authentication == null) {
+            log.error("Aucune authentication trouvée dans SecurityContextHolder");
+            return null;
+        }
+
+        log.info("Authentication: {}", authentication);
+        log.info("Principal: {}", authentication.getPrincipal());
+
+        if (authentication.getPrincipal() instanceof UserDetails) {
             String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+            log.info("Utilisateur authentifié: {}", username);
+
             return userRepository.findByUsername(username)
                     .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
         }
@@ -44,6 +54,7 @@ public class UserService {
         log.error("User is not authenticated");
         return null;
     }
+
 
 }
 

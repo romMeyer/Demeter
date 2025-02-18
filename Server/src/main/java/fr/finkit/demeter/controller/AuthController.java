@@ -6,8 +6,10 @@ import fr.finkit.demeter.dto.RegisterUserDto;
 import fr.finkit.demeter.entity.User;
 import fr.finkit.demeter.service.AuthenticationService;
 import fr.finkit.demeter.service.JwtService;
+import fr.finkit.demeter.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,12 +26,17 @@ public class AuthController {
 
     @Autowired
     JwtService jwtService;
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginUserDto loginUserDto) {
         User authenticatedUser = authenticationService.authenticate(loginUserDto);
 
         String jwtToken = jwtService.generateToken(authenticatedUser);
+        if(jwtToken == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
 
         LoginResponse loginResponse = new LoginResponse(jwtToken, jwtService.getExpirationTime());
 
@@ -38,6 +45,9 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
+        if(userService.findByUsername(registerUserDto.getUsername()).isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
         User registeredUser = authenticationService.signup(registerUserDto);
         log.debug(registeredUser.getUsername());
         return ResponseEntity.ok(registeredUser);

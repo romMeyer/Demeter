@@ -56,19 +56,19 @@ export class LoginComponent {
   }
 
   get registerFirstName() {
-    return this.loginForm.get("firstName");
+    return this.registerForm.get("firstName");
   }
 
   get registerLastName() {
-    return this.loginForm.get("lastName");
+    return this.registerForm.get("lastName");
   }
 
   get registerUsername() {
-    return this.loginForm.get("username");
+    return this.registerForm.get("username");
   }
 
   get registerPassword() {
-    return this.loginForm.get("password");
+    return this.registerForm.get("password");
   }
 
   onSubmitLogin() {

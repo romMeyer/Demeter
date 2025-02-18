@@ -29,7 +29,6 @@ export class AuthService {
   register(register : RegisterUserDto): void {
     this.http.post<any>(this.apiUrl + "/register", register).subscribe({
       next: (response) => {
-        console.log('Connexion réussie:', response);
         localStorage.setItem('token', response.token);
         console.log("Token enregistré:", response.token);
         

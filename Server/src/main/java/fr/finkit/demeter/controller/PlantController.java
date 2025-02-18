@@ -5,6 +5,7 @@ import fr.finkit.demeter.entity.Plant;
 import fr.finkit.demeter.mapper.PlantMapper;
 import fr.finkit.demeter.service.PlantService;
 import fr.finkit.demeter.service.UserService;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
