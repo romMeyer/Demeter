@@ -6,6 +6,10 @@ INSERT INTO plant_type (name) VALUES
 ('Fruit'),
 ('Légume');
 
+INSERT INTO roles (name) VALUES
+('USER'),
+('ADMIN');
+
 INSERT INTO plant (name, type_id, image_name) VALUES
 ('Tomate', 1, 'tomate'),
 ('Fraise', 1, 'fraise'),

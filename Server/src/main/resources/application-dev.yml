@@ -25,6 +25,12 @@ spring:
     serialization:
       indent_output: true
 
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+
 security:
   jwt:
     expiration-time: 3600000

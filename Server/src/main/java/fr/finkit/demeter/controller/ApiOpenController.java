@@ -2,8 +2,11 @@ package fr.finkit.demeter.controller;
 
 import fr.finkit.demeter.dto.PlantDto;
 import fr.finkit.demeter.entity.Plant;
+import fr.finkit.demeter.entity.User;
 import fr.finkit.demeter.mapper.PlantMapper;
 import fr.finkit.demeter.service.PlantService;
+import fr.finkit.demeter.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("api-open")
 public class ApiOpenController {
@@ -21,11 +25,17 @@ public class ApiOpenController {
 
     @Autowired
     private PlantMapper plantMapper;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/plants")
     public ResponseEntity<List<PlantDto>> getAllPlants() {
         List<Plant> plantList = plantService.getAllPlants();
         List<PlantDto> plantDtoList = plantList.stream().map(plantMapper::toDto).toList();
+        User user = userService.getCurrentUser();
+        if (user != null){
+           log.debug(user.getUsername());
+        }
         return ResponseEntity.ok(plantDtoList);
     }
 }

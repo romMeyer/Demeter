@@ -25,6 +25,6 @@ public class Plant implements Serializable {
 
     @JoinColumn(name = "type_id")
     @ManyToOne(fetch = FetchType.EAGER)
-    private PlantType type;
+    private PlantType plantType;
 
 }

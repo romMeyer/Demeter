@@ -23,5 +23,5 @@ public class PlantDto implements Serializable {
     private String imageName;
 
     @JsonProperty
-    private PlantType type;
+    private PlantType plantType;
 }
