@@ -1,6 +1,8 @@
+import { PlantType } from "./PlantType";
+
 export interface PlanteDto{
     id: number,
-    libelle: String;
-    type?: String; // id plus tard
+    name: String;
+    plantType?: PlantType; // id plus tard
     description?: String;
 }

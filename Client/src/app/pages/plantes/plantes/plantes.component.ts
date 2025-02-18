@@ -17,10 +17,10 @@ import { InfoComponent } from '../../../shared/info/info.component';
 })
 export class PlantesComponent {
   plantes = new MatTableDataSource<PlanteUserDto>([]);
-  displayedColumns: string[] = ['image', 'libelle', 'arrosage' ,'arrose', 'actions'];
+  displayedColumns: string[] = ['imageName', 'name', 'arrosage' ,'arrose', 'actions'];
   columnsConfig: {key: string, label: string}[] = [
-    { key: 'libelle', label: 'Libellé' },
-    { key: 'image', label: 'Image' },
+    { key: 'name', label: 'Libellé' },
+    { key: 'imageName', label: 'Image' },
     { key: 'arrosage', label: 'Arrosé le' },
     { key: 'arrose', label: 'A arrosé' }
 ]
@@ -33,9 +33,9 @@ export class PlantesComponent {
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit(): void {
-    this.planteService.getPlantes().subscribe(data => {
+    this.planteService.getUserPlants().subscribe(data => {
       // Appliquer la transformation aux dates
-      const plantesFormatted = data.plantesUser.map((plante: PlanteUserDto) => ({
+      const plantesFormatted = data.map((plante: PlanteUserDto) => ({
         ...plante,
         arrosage: formatDateToRelative(plante.arrosage),
         arrose: formatDateToRelative(plante.arrose)
@@ -44,13 +44,13 @@ export class PlantesComponent {
       this.plantes.data = plantesFormatted;
 
       this.plantes.filterPredicate = (data: PlanteUserDto, filter: string) => {
-        return data.libelle?.toLowerCase().includes(filter);
+        return data.name?.toLowerCase().includes(filter);
       };
     });
   }
 
   arroserPlante(plante: PlanteUserDto): void {
-     console.log(`${plante.libelle} a été arrosée !`);
+     console.log(`${plante.name} a été arrosée !`);
   }
 
   applyFilter(value: string): void {
@@ -66,7 +66,7 @@ export class PlantesComponent {
   arroserDialogue(plante: PlanteUserDto): void {
     const dialogRef = this.dialogue.open(DialogueComponent, {
       width: '300px',
-      data: {title:"Confirmer l'arrosage", question:"Voulez-vous arroser ", libellePlante: plante.libelle }
+      data: {title:"Confirmer l'arrosage", question:"Voulez-vous arroser ", libellePlante: plante.name }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -76,7 +76,7 @@ export class PlantesComponent {
           verticalPosition: 'top',
           horizontalPosition: 'center',
           panelClass: ['custom-snackbar'],
-          data: { accentuateWord: `${plante.libelle}`, content: 'a été arrosé !' }
+          data: { accentuateWord: `${plante.name}`, content: 'a été arrosé !' }
         });
       }
     });

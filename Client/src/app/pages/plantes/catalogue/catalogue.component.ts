@@ -25,11 +25,11 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 })
 export class CatalogueComponent {
   plantes = new MatTableDataSource<PlanteDto>([]);  
-  displayedColumns: string[] = ['libelle', 'image', 'type', 'actions'];
+  displayedColumns: string[] = ['name', 'imageName', 'plantType', 'actions'];
   columnsConfig: {key: string, label: string}[] = [
-    { key: 'libelle', label: 'Libellé' },
-    { key: 'image', label: 'Image' },
-    { key: 'type', label: 'Type' }
+    { key: 'name', label: 'Libellé' },
+    { key: 'imageName', label: 'Image' },
+    { key: 'plantType', label: 'Type' }
   ]
   value: string = '';
 
@@ -41,11 +41,11 @@ export class CatalogueComponent {
 
   ngOnInit(): void {
 
-    this.planteService.getPlantes().subscribe(data => {
-      this.plantes.data = data.plantes;
+    this.planteService.getPlants().subscribe(data => {
+      this.plantes.data = data;
 
       this.plantes.filterPredicate = (data: PlanteDto, filter: string) => {
-        return data.libelle?.toLowerCase().includes(filter);
+        return data.name?.toLowerCase().includes(filter);
       };
 
       if (this.paginator){
@@ -62,7 +62,7 @@ export class CatalogueComponent {
   ajouterDialogue(plante: PlanteDto): void {
       const dialogRef = this.dialogue.open(DialogueComponent, {
         width: '300px',
-        data: {title:"Confirmer l'ajout", question:"Voulez-vous ajouter ", libellePlante: plante.libelle }
+        data: {title:"Confirmer l'ajout", question:"Voulez-vous ajouter ", libellePlante: plante.name }
       });
   
       dialogRef.afterClosed().subscribe(result => {
@@ -71,7 +71,7 @@ export class CatalogueComponent {
             duration: 3000, // Temps d'affichage
             verticalPosition: 'top',
             horizontalPosition: 'center',
-            data: { accentuateWord: `${plante.libelle}`, content: 'a été ajouté !' }
+            data: { accentuateWord: `${plante.name}`, content: 'a été ajouté !' }
           });
         }
       });

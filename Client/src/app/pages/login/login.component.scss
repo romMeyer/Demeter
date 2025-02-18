@@ -1,10 +1,14 @@
 @use "../../../styles.scss" as styles;
 
-.login-container {
+.form-container {
   display: flex;
+  flex-direction: row;
+}
+
+.login-container {
   flex-direction: column;
-  justify-content: center;
   padding: 1.5%;
+  width: 100%;
 }
 .login-card {
   width: 400px;

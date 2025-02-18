@@ -1,7 +1,7 @@
 export interface PlanteUserDto{
     id: number,
-    libelle: String;
-    image?: String;
+    name: String;
+    imageName?: String;
     arrose: Date;
     arrosage: Date;
 }

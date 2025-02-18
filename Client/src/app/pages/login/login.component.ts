@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { AuthService } from '../../services/AuthService';
 
 @Component({
   selector: 'app-login',
@@ -21,33 +22,71 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatCardModule,  
   ],
+  providers:[
+    AuthService
+  ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  registerForm: FormGroup;
   isSubmitted = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+
+    this.registerForm = this.fb.group({
+      firstName: ['', [Validators.required, Validators.minLength(3)]],
+      lastName: ['', [Validators.required, Validators.minLength(3)]],
       username: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
-  get username() {
+  get loginUsername() {
     return this.loginForm.get("username");
   }
 
-  get password() {
+  get loginPassword() {
     return this.loginForm.get("password");
   }
 
-  onSubmit() {
+  get registerFirstName() {
+    return this.loginForm.get("firstName");
+  }
+
+  get registerLastName() {
+    return this.loginForm.get("lastName");
+  }
+
+  get registerUsername() {
+    return this.loginForm.get("username");
+  }
+
+  get registerPassword() {
+    return this.loginForm.get("password");
+  }
+
+  onSubmitLogin() {
     this.isSubmitted = true;
     if (this.loginForm.invalid) {
       return;
     }
+    this.authService.login(this.loginForm.value);
     console.log('Form Submitted:', this.loginForm.value);
+  }
+
+  onSubmitRegister() {
+    this.isSubmitted = true;
+    if (this.registerForm.invalid) {
+      return;
+    }
+    this.authService.register(this.registerForm.value);
+
+    console.log('Form Submitted:', this.registerForm.value);
   }
 }

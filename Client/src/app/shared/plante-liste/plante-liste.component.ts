@@ -29,7 +29,7 @@ export class PlanteListeComponent {
     this.plantes.data = this.data;
 
     this.plantes.filterPredicate = (data: PlanteDto | PlanteUserDto, filter: string) => {
-      return data.libelle?.toLowerCase().includes(filter);
+      return data.name?.toLowerCase().includes(filter);
     };
   }
 

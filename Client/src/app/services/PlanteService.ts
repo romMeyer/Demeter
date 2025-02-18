@@ -7,11 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class PlanteService {
   private apiUrl = 'http://localhost:8080'; 
-  private jsonUrl = './assets/plantes.json';
 
   constructor(private http: HttpClient) { }
 
-  getPlantes(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "/api-open/plants");
+  getPlants(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/api-open/plants`);
+  }
+
+  getUserPlants(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/api/plants/user`);
   }
 }
