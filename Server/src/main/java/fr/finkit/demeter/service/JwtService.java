@@ -14,14 +14,21 @@ import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import fr.finkit.demeter.repository.UserRepository; // Assurez-vous que ce repository existe
 
 @Service
 public class JwtService {
+
     @Value("${security.jwt.secret-key}")
     private String secretKey;
 
     @Value("${security.jwt.expiration-time}")
     private long jwtExpiration;
+
+    @Autowired
+    private UserService userService;
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -49,10 +56,17 @@ public class JwtService {
             UserDetails userDetails,
             long expiration
     ) {
+        // Récupérer le rôle depuis la base de données en fonction du username
+        String username = userDetails.getUsername();
+        String role = userService.findRoleByUsername(username); // Méthode à implémenter dans le UserRepository
+
+        // Ajouter le rôle aux claims
+        extraClaims.put("role", role); // Ajouter le rôle dans les claims
+
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
-                .setSubject(userDetails.getUsername())
+                .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
@@ -86,4 +100,3 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }
-

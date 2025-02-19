@@ -11,7 +11,7 @@ import java.util.List;
 public interface PlantRepository extends JpaRepository<Plant, Long> {
 
     @Query(value = "SELECT p FROM Plant p " +
-            "JOIN PlantUser pu ON p.id = pu.id.plantId " +
-            "WHERE pu.id.userId = :userId")
+            "JOIN PlantUser pu ON p.id = pu.id.plant.id " +
+            "WHERE pu.id.user.id = :userId")
     List<Plant> findAllByUserId(Long userId);
 }

@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSortModule } from '@angular/material/sort';
 import { PlanteListeComponent } from '../../shared/plante-liste/plante-liste.component';
+import { PlantUserService } from '../../services/PlantUserService';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PlanteListeComponent } from '../../shared/plante-liste/plante-liste.com
 
 ],
   providers: [
-    PlanteService
+    PlanteService,
+    PlantUserService
   ]
 })
 export class PlantesModule { }

@@ -2,6 +2,7 @@ package fr.finkit.demeter.service;
 
 import fr.finkit.demeter.entity.Plant;
 import fr.finkit.demeter.repository.PlantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -10,7 +11,8 @@ import java.util.Optional;
 @Service
 public class PlantService {
 
-    private final PlantRepository plantRepository;
+    @Autowired
+    private PlantRepository plantRepository;
 
     public PlantService(PlantRepository plantRepository) {
         this.plantRepository = plantRepository;

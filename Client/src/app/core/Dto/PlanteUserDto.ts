@@ -1,7 +1,7 @@
+import { PlanteDto } from "./PlanteDto";
+
 export interface PlanteUserDto{
-    id: number,
-    name: String;
-    imageName?: String;
+    plant: PlanteDto
     arrose: Date;
     arrosage: Date;
 }

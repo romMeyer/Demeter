@@ -56,5 +56,8 @@ public class UserService {
     }
 
 
+    public String findRoleByUsername(String username) {
+        return userRepository.findRoleByUsername(username)
+    ;}
 }
 

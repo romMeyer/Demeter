@@ -3,10 +3,22 @@
 
     <div class="navbar">
       <a routerLink="/home"><img src="./assets/logo.png" alt="Demeter Logo" height="150" width="150" priority></a>
-      <a mat-stroked-button color="accent" routerLink="/plantes" class="navbarButton">Mes plantes</a>
+    
+      <!-- Afficher le bouton "Mes plantes" uniquement si l'utilisateur est connecté -->
+      <a *ngIf="isLoggedIn" mat-stroked-button color="accent" routerLink="/plantes" class="navbarButton">Mes plantes</a>
+      
+      <!-- Afficher le bouton "Catalogue" -->
       <a mat-stroked-button color="accent" routerLink="/catalogue" class="navbarButton">Catalogue</a>
-      <a mat-stroked-button color="accent" routerLink="/login" class="navbarButton">Se connecter</a>
+      
+      <!-- Afficher "Se connecter" ou "Se déconnecter" selon l'état de connexion -->
+      <a *ngIf="!isLoggedIn" mat-stroked-button color="accent" routerLink="/login" class="navbarButton">Se connecter</a>
+      <a *ngIf="isLoggedIn" mat-stroked-button color="accent" (click)="logout()" class="navbarButton">Se déconnecter</a>
+    
+      <!-- Afficher des options spéciales si l'utilisateur est un admin -->
+      <a *ngIf="userRole === 'ADMIN'" mat-stroked-button color="accent" routerLink="/admin" class="navbarButton">Admin</a>
     </div>
+    
+    
 
   </mat-drawer>
 

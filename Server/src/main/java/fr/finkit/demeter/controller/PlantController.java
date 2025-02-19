@@ -1,11 +1,15 @@
 package fr.finkit.demeter.controller;
 
 import fr.finkit.demeter.dto.PlantDto;
+import fr.finkit.demeter.dto.PlantUserDto;
 import fr.finkit.demeter.entity.Plant;
+import fr.finkit.demeter.entity.PlantUser;
+import fr.finkit.demeter.entity.User;
 import fr.finkit.demeter.mapper.PlantMapper;
+import fr.finkit.demeter.mapper.PlantUserMapper;
 import fr.finkit.demeter.service.PlantService;
+import fr.finkit.demeter.service.PlantUserService;
 import fr.finkit.demeter.service.UserService;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +25,15 @@ public class PlantController {
     private PlantService plantService;
 
     @Autowired
+    private PlantUserService plantUserService;
+
+    @Autowired
     private PlantMapper plantMapper;
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private PlantUserMapper plantUserMapper;
 
     @GetMapping("/{id}")
     public ResponseEntity<PlantDto> getPlantById(@PathVariable Long id) {
@@ -52,12 +61,40 @@ public class PlantController {
 
 
     @GetMapping("/user")
-    public ResponseEntity<List<PlantDto>> getPlantsByUser() {
-        Long userId = Long.valueOf(userService.getCurrentUser().getId());
-        if(userService.getCurrentUser().getId() == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        List<Plant> plantList = plantService.findAllByUserId(userId);
-        List<PlantDto> plantDtoList = plantList.stream().map(plantMapper::toDto).toList();
-        return ResponseEntity.ok(plantDtoList);
+    public ResponseEntity<List<PlantUserDto>> getPlantsByUser() {
+        User user = userService.getCurrentUser();
+        if(user.getId() == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
+        List<PlantUser> plantUserList = plantUserService.findAllByUserId(user.getId());
+        List<PlantUserDto> plantUserDtoList = plantUserList.stream().map(plantUserMapper::toDto).toList();
+        return ResponseEntity.ok(plantUserDtoList);
+    }
+
+    @PostMapping("/user")
+    public ResponseEntity<PlantUserDto> addPlantForUser(@RequestBody Long plantId) {
+        User user = userService.getCurrentUser();
+        if(user.getId() == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
+        Plant plant = plantService.getPlantById(plantId).orElse(null);
+        if(plant == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
+        PlantUser plantReturn = plantUserService.savePlantUser(plant, user);
+        PlantUserDto plantReturnDto = plantUserMapper.toDto(plantReturn);
+        return ResponseEntity.status(HttpStatus.CREATED).body(plantReturnDto);
+    }
+
+    @PatchMapping("/user")
+    public ResponseEntity<PlantUserDto> waterPlant(@RequestBody Long plantId) {
+        User user = userService.getCurrentUser();
+        if(user.getId() == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
+        Plant plant = plantService.getPlantById(plantId).orElse(null);
+        if(plant == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
+
+        PlantUser plantReturn = plantUserService.waterPlant(plant, user);
+        PlantUserDto plantReturnDto = plantUserMapper.toDto(plantReturn);
+        return ResponseEntity.status(HttpStatus.CREATED).body(plantReturnDto);
     }
 
 }

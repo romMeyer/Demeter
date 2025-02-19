@@ -2,6 +2,9 @@ package fr.finkit.demeter.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.*;
 
 import java.io.Serializable;
@@ -14,11 +17,13 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class PlantUserId implements Serializable {
 
-    @Column(name = "plant_id")
-    private Integer plantId;
+    @ManyToOne
+    @JoinColumn(name = "plant_id")
+    private Plant plant;
 
-    @Column(name = "user_id")
-    private Integer userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
 }

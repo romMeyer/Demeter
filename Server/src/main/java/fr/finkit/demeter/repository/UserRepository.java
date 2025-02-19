@@ -13,4 +13,9 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByUsername(String username);
+
+    @Query(value = "SELECT r.name FROM Role r " +
+            "JOIN User u ON u.role.id = r.id " +
+            "WHERE u.username = :username")
+    String findRoleByUsername(String username);
 }

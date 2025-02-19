@@ -16,13 +16,10 @@ import java.util.Date;
 public class PlantUserDto implements Serializable {
 
     @JsonProperty
-    private Integer id;
+    private PlantDto plant;
 
     @JsonProperty
-    private Plant plant;
-
-    @JsonProperty
-    private User user;
+    private UserDto user;
 
     @JsonProperty
     private Date arrose;

@@ -29,7 +29,8 @@ export class PlanteListeComponent {
     this.plantes.data = this.data;
 
     this.plantes.filterPredicate = (data: PlanteDto | PlanteUserDto, filter: string) => {
-      return data.name?.toLowerCase().includes(filter);
+      const name = 'name' in data ? data.name : data.plant?.name;
+      return name?.toLowerCase().includes(filter);
     };
   }
 

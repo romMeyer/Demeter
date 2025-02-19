@@ -8,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogueComponent } from '../../../shared/dialogue/dialogue.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { InfoComponent } from '../../../shared/info/info.component';
+import { Router } from '@angular/router';
+import { PlantUserService } from '../../../services/PlantUserService';
  
 
 @Component({
@@ -17,40 +19,72 @@ import { InfoComponent } from '../../../shared/info/info.component';
 })
 export class PlantesComponent {
   plantes = new MatTableDataSource<PlanteUserDto>([]);
-  displayedColumns: string[] = ['imageName', 'name', 'arrosage' ,'arrose', 'actions'];
+  displayedColumns: string[] = ['imageName', 'name', 'arrose' ,'arrosage', 'actions'];
   columnsConfig: {key: string, label: string}[] = [
     { key: 'name', label: 'Libellé' },
     { key: 'imageName', label: 'Image' },
-    { key: 'arrosage', label: 'Arrosé le' },
-    { key: 'arrose', label: 'A arrosé' }
+    { key: 'arrose', label: 'Arrosé le' },
+    { key: 'arrosage', label: 'A arrosé' }
 ]
   value: string = '';
 
 
-  constructor(private planteService: PlanteService, public dialogue: MatDialog, private info: MatSnackBar){}
+  constructor(private planteService: PlanteService, private plantUserService: PlantUserService, public dialogue: MatDialog, private info: MatSnackBar, private router: Router){}
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit(): void {
-    this.planteService.getUserPlants().subscribe(data => {
-      // Appliquer la transformation aux dates
-      const plantesFormatted = data.map((plante: PlanteUserDto) => ({
-        ...plante,
-        arrosage: formatDateToRelative(plante.arrosage),
-        arrose: formatDateToRelative(plante.arrose)
-      }));
-  
-      this.plantes.data = plantesFormatted;
+    this.fetchPlants();
+  }
 
-      this.plantes.filterPredicate = (data: PlanteUserDto, filter: string) => {
-        return data.name?.toLowerCase().includes(filter);
-      };
+  fetchPlants(): void{
+    this.planteService.getUserPlants().subscribe({
+      next: (data) => {
+        // Appliquer la transformation aux dates
+        const plantesFormatted = data.map((plante: PlanteUserDto) => ({
+          ...plante,
+          name: plante.plant.name,
+          imageName: plante.plant.imageName,
+          arrosage: formatDateToRelative(plante.arrosage),
+          arrose: formatDateToRelative(plante.arrose)
+        }));
+    
+        this.plantes.data = plantesFormatted;
+    
+        this.plantes.filterPredicate = (data: PlanteUserDto, filter: string) => {
+          return data.plant.name?.toLowerCase().includes(filter);
+        };
+      },
+      error: (error) => {
+        if (error.status === 403) {
+          console.warn("🚨 Accès interdit (403), redirection vers /login...");
+          this.router.navigate(['/login']);
+        }
+      }
     });
   }
 
   arroserPlante(plante: PlanteUserDto): void {
-     console.log(`${plante.name} a été arrosée !`);
+    this.plantUserService.waterPlantUser(plante.plant.id).subscribe({
+      next: (response) =>{
+        this.showInfo(plante)
+        this.fetchPlants();
+      },
+      error: (error) =>{
+        console.error("Arrosage raté")
+      }
+    })
+  }
+
+  showInfo(plante: PlanteUserDto){
+    this.info.openFromComponent(InfoComponent, {
+      duration: 3000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      panelClass: ['custom-snackbar'],
+      data: { accentuateWord: `${plante.plant.name}`, content: 'a été arrosé !' }
+    });
   }
 
   applyFilter(value: string): void {
@@ -66,18 +100,12 @@ export class PlantesComponent {
   arroserDialogue(plante: PlanteUserDto): void {
     const dialogRef = this.dialogue.open(DialogueComponent, {
       width: '300px',
-      data: {title:"Confirmer l'arrosage", question:"Voulez-vous arroser ", libellePlante: plante.name }
+      data: {title:"Confirmer l'arrosage", question:"Voulez-vous arroser ", libellePlante: plante.plant.name }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.info.openFromComponent(InfoComponent, {
-          duration: 3000,
-          verticalPosition: 'top',
-          horizontalPosition: 'center',
-          panelClass: ['custom-snackbar'],
-          data: { accentuateWord: `${plante.name}`, content: 'a été arrosé !' }
-        });
+        this.arroserPlante(plante);
       }
     });
   }

@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { InfoComponent } from '../../../shared/info/info.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { PlantUserService } from '../../../services/PlantUserService';
 
 @Component({
   selector: 'app-catalogue',
@@ -34,7 +35,7 @@ export class CatalogueComponent {
   value: string = '';
 
 
-  constructor(private planteService: PlanteService, private dialogue: MatDialog, private info: MatSnackBar){}
+  constructor(private planteService: PlanteService, private plantUserService: PlantUserService, private dialogue: MatDialog, private info: MatSnackBar){}
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -56,7 +57,23 @@ export class CatalogueComponent {
   }
 
   ajouterPlante(plante: PlanteDto){
-    console.log(plante);
+    this.plantUserService.addPlantUser(plante.id).subscribe({
+      next: (response) =>{
+        this.showInfo(plante)
+      },
+      error: (error) =>{
+        console.error("Ajout raté")
+      }
+    });
+  }
+
+  showInfo(plante: PlanteDto){
+    this.info.openFromComponent(InfoComponent, {
+      duration: 3000, // Temps d'affichage
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      data: { accentuateWord: `${plante.name}`, content: 'a été ajouté !' }
+    });
   }
 
   ajouterDialogue(plante: PlanteDto): void {
@@ -67,12 +84,7 @@ export class CatalogueComponent {
   
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          this.info.openFromComponent(InfoComponent, {
-            duration: 3000, // Temps d'affichage
-            verticalPosition: 'top',
-            horizontalPosition: 'center',
-            data: { accentuateWord: `${plante.name}`, content: 'a été ajouté !' }
-          });
+          this.ajouterPlante(plante);
         }
       });
     }

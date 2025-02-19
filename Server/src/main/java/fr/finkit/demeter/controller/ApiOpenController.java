@@ -2,7 +2,6 @@ package fr.finkit.demeter.controller;
 
 import fr.finkit.demeter.dto.PlantDto;
 import fr.finkit.demeter.entity.Plant;
-import fr.finkit.demeter.entity.User;
 import fr.finkit.demeter.mapper.PlantMapper;
 import fr.finkit.demeter.service.PlantService;
 import fr.finkit.demeter.service.UserService;
@@ -32,10 +31,6 @@ public class ApiOpenController {
     public ResponseEntity<List<PlantDto>> getAllPlants() {
         List<Plant> plantList = plantService.getAllPlants();
         List<PlantDto> plantDtoList = plantList.stream().map(plantMapper::toDto).toList();
-        User user = userService.getCurrentUser();
-        if (user != null){
-           log.debug(user.getUsername());
-        }
         return ResponseEntity.ok(plantDtoList);
     }
 }
