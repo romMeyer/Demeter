@@ -1,0 +1,12 @@
+<div class="navbar">
+  <a routerLink="/home"><img src="./assets/logo.png" alt="Demeter Logo" height="150" width="150" priority></a>
+
+  <a *ngIf="(currentUser$ | async) !== Role.GUEST && (currentUser$ | async) !== null" mat-stroked-button color="accent" routerLink="/plantes" class="navbarButton">Mes plantes</a>
+  <a mat-stroked-button color="accent" routerLink="/catalogue" class="navbarButton">Catalogue</a>
+  
+  <a *ngIf="(currentUser$ | async) == Role.GUEST || (currentUser$ | async) == null" mat-stroked-button color="accent" routerLink="/login" class="navbarButton">Se connecter</a>
+  <a *ngIf="(currentUser$ | async) !== Role.GUEST && (currentUser$ | async) !== null" mat-stroked-button color="accent" (click)="logout()" class="navbarButton">Se déconnecter</a>
+  
+  <a *ngIf="(currentUser$ | async) == Role.ADMIN " mat-stroked-button color="accent" routerLink="/admin" class="navbarButton">Admin</a>
+  {{(currentUser$ | async)}}
+</div>

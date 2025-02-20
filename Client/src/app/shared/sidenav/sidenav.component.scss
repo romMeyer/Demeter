@@ -1,0 +1,18 @@
+@use "../../../styles.scss" as styles;
+
+.navbar{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    align-items: center;
+    background-color: styles.$primary-color;
+    height: 100%;
+
+}
+
+.navbarButton{
+    width: 100%;;
+    margin: 8px 0;
+    height: 40px;
+}

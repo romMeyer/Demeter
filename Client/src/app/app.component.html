@@ -1,30 +1,9 @@
 <mat-drawer-container class="main">
   <mat-drawer mode="side" opened>
-
-    <div class="navbar">
-      <a routerLink="/home"><img src="./assets/logo.png" alt="Demeter Logo" height="150" width="150" priority></a>
-    
-      <!-- Afficher le bouton "Mes plantes" uniquement si l'utilisateur est connecté -->
-      <a *ngIf="isLoggedIn" mat-stroked-button color="accent" routerLink="/plantes" class="navbarButton">Mes plantes</a>
-      
-      <!-- Afficher le bouton "Catalogue" -->
-      <a mat-stroked-button color="accent" routerLink="/catalogue" class="navbarButton">Catalogue</a>
-      
-      <!-- Afficher "Se connecter" ou "Se déconnecter" selon l'état de connexion -->
-      <a *ngIf="!isLoggedIn" mat-stroked-button color="accent" routerLink="/login" class="navbarButton">Se connecter</a>
-      <a *ngIf="isLoggedIn" mat-stroked-button color="accent" (click)="logout()" class="navbarButton">Se déconnecter</a>
-    
-      <!-- Afficher des options spéciales si l'utilisateur est un admin -->
-      <a *ngIf="userRole === 'ADMIN'" mat-stroked-button color="accent" routerLink="/admin" class="navbarButton">Admin</a>
-    </div>
-    
-    
-
+    <app-sidenav></app-sidenav>
   </mat-drawer>
-
 
   <mat-drawer-content>
     <router-outlet></router-outlet>
   </mat-drawer-content>
-  
 </mat-drawer-container>

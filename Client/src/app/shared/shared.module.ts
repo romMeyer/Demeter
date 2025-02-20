@@ -14,6 +14,10 @@ import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { AuthService } from '../services/AuthService';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -21,7 +25,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     TitleComponent,
     DialogueComponent,
     InfoComponent,
-    PlanteListeComponent
+    PlanteListeComponent,
+    SidenavComponent
 
   ],
   imports: [
@@ -37,13 +42,17 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     FormsModule,
     MatInputModule,
     MatProgressBarModule,
+    RouterModule,
+    HttpClientModule
+    
 
   ],
   exports :[
     TitleComponent,
     DialogueComponent,
     InfoComponent,
-    PlanteListeComponent
+    PlanteListeComponent,
+    SidenavComponent
   ]
 })
 export class SharedModule { }

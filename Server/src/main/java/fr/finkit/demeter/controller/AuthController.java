@@ -44,13 +44,16 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
+    public ResponseEntity<LoginResponse> register(@RequestBody RegisterUserDto registerUserDto) {
         if(userService.findByUsername(registerUserDto.getUsername()).isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-        User registeredUser = authenticationService.signup(registerUserDto);
-        log.debug(registeredUser.getUsername());
-        return ResponseEntity.ok(registeredUser);
+        User authenticatedUser = authenticationService.signup(registerUserDto);;
+
+        String jwtToken = jwtService.generateToken(authenticatedUser);
+
+        LoginResponse loginResponse = new LoginResponse(jwtToken, jwtService.getExpirationTime());
+        return ResponseEntity.ok(loginResponse);
     }
 }
 
