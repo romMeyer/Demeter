@@ -1,13 +1,18 @@
 <div>
-    <mat-form-field class="form" color="primary">
-        <mat-label>Rechercher une plante</mat-label>
-        <input (keyup)="applyFilter(value)" matInput type="text" [(ngModel)]="value">
-        @if (value) {
-        <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''" (click)=applyFilter(value)>
-            <mat-icon>close</mat-icon>
-        </button>
-        }
-    </mat-form-field>
+    <div class="head">
+        <mat-form-field class="form" color="primary">
+            <mat-label>Rechercher une plante</mat-label>
+            <input (keyup)="applyFilter(value)" matInput type="text" [(ngModel)]="value">
+            @if (value) {
+            <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''" (click)=applyFilter(value)>
+                <mat-icon>close</mat-icon>
+            </button>
+            }
+        </mat-form-field>
+
+        <button class="revokeButton" mat-flat-button color="warn" *ngIf="showRevokePlant" (click)="toggleDeleteButton()">Retirer des plantes</button>
+
+    </div>
 
     <p *ngIf="!data.length">Plantes en cours de chargement...</p>
 
@@ -37,8 +42,13 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> Action </th>
                 <td mat-cell *matCellDef="let element">
-                    <button mat-flat-button color="accent" (click)="actionHandler(element)">
+                    <button *ngIf="!showDeleteButton" mat-flat-button color="accent" (click)="actionHandler(element)">
                         {{ actionLabel }}
+                        <mat-icon fontIcon="keyboard_arrow_up"></mat-icon>
+                    </button>
+                    <button *ngIf="showDeleteButton" mat-flat-button color="warn" (click)="deleteActionHandler(element)">
+                        Supprimer
+                        <mat-icon fontIcon="restore_from_trash"></mat-icon>
                     </button>
                 </td>
             </ng-container>

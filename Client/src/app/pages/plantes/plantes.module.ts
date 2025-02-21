@@ -12,7 +12,6 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSortModule } from '@angular/material/sort';
-import { PlanteListeComponent } from '../../shared/plante-liste/plante-liste.component';
 import { PlantUserService } from '../../services/PlantUserService';
 
 @NgModule({

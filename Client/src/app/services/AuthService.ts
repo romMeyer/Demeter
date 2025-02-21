@@ -16,7 +16,6 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<Role>(Role.GUEST);
   public observable$ = this.currentUserSubject.asObservable();
   private jwtHelper = new JwtHelperService();
-  private intervalId: any;
 
 
   constructor(private http: HttpClient, private router: Router) {
@@ -27,7 +26,6 @@ export class AuthService {
       this.currentUserSubject.next(role);
       console.log("Utilisateur récupéré depuis le stockage:", { token, role });
     }
-    this.startLogging();
 
   }
   
@@ -90,12 +88,4 @@ export class AuthService {
     this.currentUserSubject.next(Role.GUEST); // Réinitialiser l'utilisateur actuel
   }
 
-  
-  startLogging() {
-    this.intervalId = setInterval(() => {
-      this.currentUser$.subscribe(value => {
-        console.log('Log toutes les secondes - Role:', value);
-      });
-    }, 1000);
-  }
 }

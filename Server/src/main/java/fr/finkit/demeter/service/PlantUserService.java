@@ -34,13 +34,21 @@ public class PlantUserService {
         return plantUserRepository.findAllByUserId(userId);
     }
 
+    public PlantUser findByUserIdAndPlantId(Plant plant, User user){
+        return plantUserRepository.findByUserIdAndPlantId(new PlantUserId(plant, user));
+    }
+
     public PlantUser waterPlant(Plant plant, User user) {
         LocalDateTime now = LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0);
 
-        PlantUser plantUser = plantUserRepository.findByUserIdAndPlantId(new PlantUserId(plant, user));
+        PlantUser plantUser = findByUserIdAndPlantId(plant, user);
         plantUser.setArrose(Date.from(now.toInstant(ZoneOffset.UTC)));
         plantUser.setArrosage(Date.from(now.plusDays(3).toInstant(ZoneOffset.UTC)));
 
         return plantUserRepository.save(plantUser);
+    }
+
+    public void deleteByPlantUser(PlantUser plantUser){
+        plantUserRepository.delete(plantUser);
     }
 }

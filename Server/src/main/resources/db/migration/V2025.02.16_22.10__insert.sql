@@ -11,18 +11,18 @@ INSERT INTO roles (name) VALUES
 ('ADMIN');
 
 INSERT INTO plant (name, type_id, image_name) VALUES
-('Tomate', 1, 'tomate'),
-('Fraise', 1, 'fraise'),
-('Framboise', 1, 'framboise'),
+('Citron', 1, 'citron'),
+('Orange', 1, 'orange'),
+('Carotte', 2, 'carotte'),
 ('Mirabelle', 1, 'mirabelle'),
 ('Raisin', 1, 'raisin'),
-('Carotte', 2, 'carotte'),
+('Tomate', 2, 'tomate'),
+('Fraise', 1, 'fraise'),
+('Framboise', 1, 'framboise'),
 ('Patate', 2, 'patate'),
 ('Radis', 2, 'radis'),
 ('Chou', 2, 'chou'),
 ('Aubergine', 2, 'aubergine'),
 ('Butternut', 2, 'butternut'),
-('Citron', 1, 'citron'),
-('Orange', 2, 'orange'),
 ('Navet', 2, 'navet'),
 ('Salade', 2, 'salade');

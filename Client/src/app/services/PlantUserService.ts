@@ -6,9 +6,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PlantUserService {
-  waterPlant(id: any) {
-    throw new Error('Method not implemented.');
-  }
   private apiUrl = 'http://localhost:8080'; 
 
   constructor(private http: HttpClient) { }
@@ -19,5 +16,9 @@ export class PlantUserService {
 
   waterPlantUser(plantId: number): Observable<any> {
     return this.http.patch<any>(`${this.apiUrl}/api/plants/user`, `${plantId}`);
+  }
+
+  deletePlantUser(plantId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/api/plants/user/${plantId}`);
   }
 }

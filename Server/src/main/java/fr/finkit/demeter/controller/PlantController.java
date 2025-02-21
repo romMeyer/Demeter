@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/plants")
@@ -32,6 +33,7 @@ public class PlantController {
 
     @Autowired
     private UserService userService;
+
     @Autowired
     private PlantUserMapper plantUserMapper;
 
@@ -52,6 +54,9 @@ public class PlantController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePlant(@PathVariable Long id) {
+        User user = userService.getCurrentUser();
+        if(user.getId() == null || !Objects.equals(user.getRole().getName(), "ADMIN")) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
         if (plantService.getPlantById(id).isPresent()) {
             plantService.deletePlant(id);
             return ResponseEntity.noContent().build();
@@ -95,6 +100,23 @@ public class PlantController {
         PlantUser plantReturn = plantUserService.waterPlant(plant, user);
         PlantUserDto plantReturnDto = plantUserMapper.toDto(plantReturn);
         return ResponseEntity.status(HttpStatus.CREATED).body(plantReturnDto);
+    }
+
+    @DeleteMapping("/user/{plantId}")
+    public ResponseEntity<Void> deletePlantUser(@PathVariable Long plantId) {
+        User user = userService.getCurrentUser();
+        if(user.getId() == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
+        Plant plant = plantService.getPlantById(plantId).orElse(null);
+        if(plant == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
+        PlantUser plantUser = plantUserService.findByUserIdAndPlantId(plant, user);
+        if(plantUser == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
+        plantUserService.deleteByPlantUser(plantUser);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
 
 }

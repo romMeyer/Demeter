@@ -18,7 +18,10 @@ export class PlanteListeComponent {
   @Input() columnsConfig: { key: string, label: string }[] = [];
   @Input() actionLabel: string = '';
   @Input() actionHandler: (item: PlanteDto | PlanteUserDto) => void = () => {};
+  @Input() deleteActionHandler: (item: PlanteDto | PlanteUserDto) => void = () => {};
+  @Input() showRevokePlant : boolean = false;
   value: string = '';
+  showDeleteButton: boolean = false;
 
   plantes = new MatTableDataSource<PlanteDto | PlanteUserDto>(this.data);
 
@@ -42,5 +45,10 @@ export class PlanteListeComponent {
   ngAfterViewInit() {
     this.plantes.paginator = this.paginator;
     this.plantes.sort = this.sort;
+  }
+
+  toggleDeleteButton(){
+    this.showDeleteButton = !this.showDeleteButton;
+    console.log("toggle : " , this.showDeleteButton)
   }
 }

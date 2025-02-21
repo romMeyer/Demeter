@@ -27,3 +27,14 @@ img {
 mat-paginator{
   background-color: rgba(styles.$primary-color, 0.8);
 }
+
+.head{
+  display: flex;
+  justify-content: space-between;
+}
+
+.revokeButton{
+  margin-right: 3%;
+  margin-top: 2%;
+  font-size: 20px;
+}

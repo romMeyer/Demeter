@@ -65,10 +65,10 @@ export class PlantesComponent {
     });
   }
 
-  arroserPlante(plante: PlanteUserDto): void {
-    this.plantUserService.waterPlantUser(plante.plant.id).subscribe({
+  arroserPlante(plantUser: PlanteUserDto): void {
+    this.plantUserService.waterPlantUser(plantUser.plant.id).subscribe({
       next: (response) =>{
-        this.showInfo(plante)
+        this.showInfo(plantUser.plant.name, 'a été arrosé !')
         this.fetchPlants();
       },
       error: (error) =>{
@@ -77,13 +77,13 @@ export class PlantesComponent {
     })
   }
 
-  showInfo(plante: PlanteUserDto){
+  showInfo(plantName: string, message: string){
     this.info.openFromComponent(InfoComponent, {
       duration: 3000,
       verticalPosition: 'top',
       horizontalPosition: 'center',
       panelClass: ['custom-snackbar'],
-      data: { accentuateWord: `${plante.plant.name}`, content: 'a été arrosé !' }
+      data: { accentuateWord: `${plantName}`, content: message }
     });
   }
 
@@ -111,6 +111,34 @@ export class PlantesComponent {
   }
 
   actionHandler = (plante: any) => this.arroserDialogue(plante);
+
+  deleteDialog(plantUser: PlanteUserDto): void {
+    const dialogRef = this.dialogue.open(DialogueComponent, {
+      width: '300px',
+      data: {title:"Confirmer la suppréssion", question:"Voulez-vous supprimer ", libellePlante: plantUser.plant.name }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deletePlantUser(plantUser);
+      }
+    });
+  }
+
+  deletePlantUser(plantUser: PlanteUserDto): void {
+    this.plantUserService.deletePlantUser(plantUser.plant.id).subscribe({
+      next: (response) =>{
+        this.showInfo(plantUser.plant.name, 'a été supprimé !')
+        this.fetchPlants();
+      },
+      error: (error) =>{
+        console.error("Suppréssion raté")
+      }
+    });
+  }
+
+  deleteActionHandler = (plant: any) => this.deleteDialog(plant);
+
 
 }
 
