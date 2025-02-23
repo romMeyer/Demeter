@@ -6,19 +6,19 @@ import { RegisterUserDto } from '../core/Dto/RegisterDto';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Role } from '../core/enum/Role';
 import { Router } from '@angular/router';
-import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
+import { PlantUserService } from './PlantUserService';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/auth'; 
+  private apiUrl = 'http://localhost:8080/api/auth';
   private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<Role>(Role.GUEST);
   public observable$ = this.currentUserSubject.asObservable();
   private jwtHelper = new JwtHelperService();
 
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private plantUserService: PlantUserService) {
     const token = localStorage.getItem('token');
     if (token && !this.jwtHelper.isTokenExpired(token)) {
       const decodedToken: any = this.jwtHelper.decodeToken(token);
@@ -28,19 +28,17 @@ export class AuthService {
     }
 
   }
-  
+
 
   login(login: LoginUserDto): void {
     this.http.post<any>(this.apiUrl + "/login", login).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.token);
-  
         // Décoder le token pour obtenir le rôle
         const decodedToken: any = this.jwtHelper.decodeToken(response.token);
-        const role: Role = decodedToken.role;  
-  
+        const role: Role = decodedToken.role;
+
         // Mettre à jour le BehaviorSubject
-        setTimeout(()=> {this.currentUserSubject.next(role), 500})
         this.currentUserSubject.next(role);
         this.router.navigate(['/plantes']);
       },

@@ -75,6 +75,14 @@ public class PlantController {
         return ResponseEntity.ok(plantUserDtoList);
     }
 
+    @GetMapping("/user/notice")
+    public ResponseEntity<Boolean> showPlantUserNeedWatering() {
+        User user = userService.getCurrentUser();
+        if(user.getId() == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
+        return ResponseEntity.ok(plantUserService.isPlantUserNeedWateringByUserId(user.getId()));
+    }
+
     @PostMapping("/user")
     public ResponseEntity<PlantUserDto> addPlantForUser(@RequestBody Long plantId) {
         User user = userService.getCurrentUser();
@@ -99,7 +107,7 @@ public class PlantController {
 
         PlantUser plantReturn = plantUserService.waterPlant(plant, user);
         PlantUserDto plantReturnDto = plantUserMapper.toDto(plantReturn);
-        return ResponseEntity.status(HttpStatus.CREATED).body(plantReturnDto);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(plantReturnDto);
     }
 
     @DeleteMapping("/user/{plantId}")

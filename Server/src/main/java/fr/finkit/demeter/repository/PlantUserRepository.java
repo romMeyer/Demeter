@@ -21,8 +21,4 @@ public interface PlantUserRepository extends JpaRepository<PlantUser, Long> {
             "WHERE pu.id = :plantUserId ")
     PlantUser findByUserIdAndPlantId(PlantUserId plantUserId);
 
-    @Modifying
-    @Query(value = "DELETE FROM PlantUser pu " +
-            "WHERE pu.id = :plantUserId ")
-    void deleteByUserIdAndPlantId(PlantUserId plantUserId);
 }

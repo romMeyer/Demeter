@@ -1,7 +1,7 @@
 <div class="navbar">
   <a routerLink="/home"><img src="./assets/logo.png" alt="Demeter Logo" height="150" width="150" priority></a>
 
-  <a *ngIf="(currentUser$ | async) !== Role.GUEST && (currentUser$ | async) !== null" mat-stroked-button color="accent" routerLink="/plantes" class="navbarButton">Mes plantes</a>
+  <a *ngIf="(currentUser$ | async) !== Role.GUEST && (currentUser$ | async) !== null" mat-stroked-button color="accent" routerLink="/plantes" class="navbarButton">Mes plantes<mat-icon *ngIf="(plantNeedWatering$ | async)" color="warn">notification_important</mat-icon></a>
   <a mat-stroked-button color="accent" routerLink="/catalogue" class="navbarButton">Catalogue</a>
   
   <a *ngIf="(currentUser$ | async) == Role.GUEST || (currentUser$ | async) == null" mat-stroked-button color="accent" routerLink="/login" class="navbarButton">Se connecter</a>

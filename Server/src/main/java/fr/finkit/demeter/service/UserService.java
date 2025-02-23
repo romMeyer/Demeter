@@ -40,12 +40,8 @@ public class UserService {
             return null;
         }
 
-        log.info("Authentication: {}", authentication);
-        log.info("Principal: {}", authentication.getPrincipal());
-
         if (authentication.getPrincipal() instanceof UserDetails) {
             String username = ((UserDetails) authentication.getPrincipal()).getUsername();
-            log.info("Utilisateur authentifié: {}", username);
 
             return userRepository.findByUsername(username)
                     .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));

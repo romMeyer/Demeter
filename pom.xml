@@ -11,6 +11,9 @@
         <relativePath/>
     </parent>
 
+    <properties>
+        <java.version>21</java.version>
+    </properties>
     <groupId>fr.finkit</groupId>
     <artifactId>Demeter</artifactId>
     <version>0.0.1-SNAPSHOT</version>

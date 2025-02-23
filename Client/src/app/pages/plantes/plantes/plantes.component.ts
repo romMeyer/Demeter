@@ -36,6 +36,7 @@ export class PlantesComponent {
 
   ngOnInit(): void {
     this.fetchPlants();
+    this.plantUserService.getNumberPlantUserNeedWatering();
   }
 
   fetchPlants(): void{
@@ -67,12 +68,13 @@ export class PlantesComponent {
 
   arroserPlante(plantUser: PlanteUserDto): void {
     this.plantUserService.waterPlantUser(plantUser.plant.id).subscribe({
-      next: (response) =>{
-        this.showInfo(plantUser.plant.name, 'a été arrosé !')
+      next: () =>{
+        this.showInfo(plantUser.plant.name, 'a été arrosé !');
+        this.plantUserService.getNumberPlantUserNeedWatering();
         this.fetchPlants();
       },
       error: (error) =>{
-        console.error("Arrosage raté")
+        console.error("Arrosage raté : ", error)
       }
     })
   }
@@ -132,7 +134,7 @@ export class PlantesComponent {
         this.fetchPlants();
       },
       error: (error) =>{
-        console.error("Suppréssion raté")
+        console.error("Suppréssion raté : ", error)
       }
     });
   }

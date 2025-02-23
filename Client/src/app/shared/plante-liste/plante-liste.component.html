@@ -9,9 +9,10 @@
             </button>
             }
         </mat-form-field>
-
-        <button class="revokeButton" mat-flat-button color="warn" *ngIf="showRevokePlant" (click)="toggleDeleteButton()">Retirer des plantes</button>
-
+        <ng-container *ngIf="showRevokePlant">
+            <button class="revokeButton" mat-flat-button color="warn" *ngIf="!showDeleteButton" (click)="toggleDeleteButton()">Retirer des plantes</button>
+            <button class="revokeButton" mat-flat-button color="accent" *ngIf="showDeleteButton" (click)="toggleDeleteButton()">Arroser des plantes</button>
+        </ng-container>
     </div>
 
     <p *ngIf="!data.length">Plantes en cours de chargement...</p>

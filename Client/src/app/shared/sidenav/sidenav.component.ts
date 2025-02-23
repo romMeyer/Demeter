@@ -1,29 +1,22 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/AuthService';
-import { Subscription } from 'rxjs';
 import { Role } from '../../core/enum/Role';
+import { PlantUserService } from '../../services/PlantUserService';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss'
 })
-export class SidenavComponent implements OnInit{
-  isLoggedIn: boolean = false;
+export class SidenavComponent {
   Role = Role;
+  plantNeedWatering$ = this.plantUserService.plantNeedWatering$;
 
   currentUser$ = this.authService.observable$;
   
 
-  constructor(private authService: AuthService, private cdRef: ChangeDetectorRef){
+  constructor(private authService: AuthService, private plantUserService: PlantUserService, private cdRef: ChangeDetectorRef){
   }
-
-  ngOnInit(): void {
-    if (this.authService.isLoggedIn()) {
-      this.isLoggedIn = true;
-    }
-  }
-
 
 
   logout(): void {
