@@ -69,7 +69,7 @@ export class PlantesComponent {
   arroserPlante(plantUser: PlanteUserDto): void {
     this.plantUserService.waterPlantUser(plantUser.plant.id).subscribe({
       next: () =>{
-        this.showInfo(plantUser.plant.name, 'a été arrosé !');
+        this.showInfo(plantUser.plant.name, 'a été arrosé(e) !');
         this.plantUserService.getNumberPlantUserNeedWatering();
         this.fetchPlants();
       },
@@ -130,7 +130,7 @@ export class PlantesComponent {
   deletePlantUser(plantUser: PlanteUserDto): void {
     this.plantUserService.deletePlantUser(plantUser.plant.id).subscribe({
       next: (response) =>{
-        this.showInfo(plantUser.plant.name, 'a été supprimé !')
+        this.showInfo(plantUser.plant.name, 'a été supprimé(e) !')
         this.fetchPlants();
       },
       error: (error) =>{

@@ -2,14 +2,14 @@
 
 .form-container {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .login-container {
   flex-direction: column;
   padding: 1.5%;
-  width: 100%;
 }
+
 .login-card {
   width: 400px;
   padding: 20px;

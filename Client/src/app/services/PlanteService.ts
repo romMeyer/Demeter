@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { PlanteDto } from '../core/Dto/PlanteDto';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,9 @@ export class PlanteService {
 
   getUserPlants(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/api/plants/user`);
+  }
+
+  getPlantById(plantId: number): Observable<PlanteDto> {
+    return this.http.get<PlanteDto>(`${this.apiUrl}/api/plants/${plantId}`)
   }
 }

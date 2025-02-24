@@ -18,6 +18,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { AuthService } from '../services/AuthService';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { PlantInformationComponent } from './plante-information/plante-information.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     DialogueComponent,
     InfoComponent,
     PlanteListeComponent,
-    SidenavComponent
+    SidenavComponent,
+    PlantInformationComponent
 
   ],
   imports: [
@@ -52,7 +54,8 @@ import { HttpClientModule } from '@angular/common/http';
     DialogueComponent,
     InfoComponent,
     PlanteListeComponent,
-    SidenavComponent
+    SidenavComponent,
+    PlantInformationComponent
   ]
 })
 export class SharedModule { }

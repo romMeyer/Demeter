@@ -1,44 +1,6 @@
 <app-title title="Login"></app-title>
 
-<div form-container>
-  <div class="login-container">
-    <mat-card class="login-card">
-      <mat-card-title>Connexion</mat-card-title>
-      <mat-card-content>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
-          
-          <!-- Champ Username -->
-          <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="username" type="text" />
-            <mat-error *ngIf="isSubmitted && loginUsername?.errors?.['required']">
-              Ce champ est requis.
-            </mat-error>
-            <mat-error *ngIf="isSubmitted && loginUsername?.errors?.['minlength']">
-              Minimum 3 caractères.
-            </mat-error>
-          </mat-form-field>
-
-          <!-- Champ Password -->
-          <mat-form-field appearance="outline">
-            <mat-label>Mot de passe</mat-label>
-            <input matInput formControlName="password" type="password" />
-            <mat-error *ngIf="isSubmitted && loginPassword?.errors?.['required']">
-              Ce champ est requis.
-            </mat-error>
-            <mat-error *ngIf="isSubmitted && loginPassword?.errors?.['minlength']">
-              Minimum 6 caractères.
-            </mat-error>
-          </mat-form-field>
-
-          <!-- Bouton de connexion -->
-          <button mat-raised-button color="accent" type="submit">Se connecter</button>
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </div>
-
-  
+<div class="form-container">
   <!--Register-->
   <div class="login-container">
     <mat-card class="login-card">
@@ -94,8 +56,45 @@
             </mat-error>
           </mat-form-field>
 
-          <!-- Bouton de connexion -->
+          <!-- Bouton d'inscription --><br>
           <button mat-raised-button color="accent" type="submit">S'inscrire</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+  <div class="login-container">
+    <mat-card class="login-card">
+      <mat-card-title>Connexion</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+          
+          <!-- Champ Username -->
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="username" type="text" />
+            <mat-error *ngIf="isSubmitted && loginUsername?.errors?.['required']">
+              Ce champ est requis.
+            </mat-error>
+            <mat-error *ngIf="isSubmitted && loginUsername?.errors?.['minlength']">
+              Minimum 3 caractères.
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Champ Password -->
+          <mat-form-field appearance="outline">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput formControlName="password" type="password" />
+            <mat-error *ngIf="isSubmitted && loginPassword?.errors?.['required']">
+              Ce champ est requis.
+            </mat-error>
+            <mat-error *ngIf="isSubmitted && loginPassword?.errors?.['minlength']">
+              Minimum 6 caractères.
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Bouton de connexion -->
+          <button mat-raised-button color="accent" type="submit">Se connecter</button>
         </form>
       </mat-card-content>
     </mat-card>

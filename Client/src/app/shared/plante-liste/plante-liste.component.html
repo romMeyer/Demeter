@@ -31,8 +31,12 @@
                     <ng-container *ngIf="col.key === 'plantType'">
                         {{ element.plantType?.name }}
                     </ng-container>
+
+                    <ng-container *ngIf="col.key === 'name'">
+                        <app-plante-information></app-plante-information>
+                    </ng-container>
                     
-                    <ng-container *ngIf="col.key !== 'imageName' && col.key !== 'plantType'">
+                    <ng-container *ngIf="col.key !== 'imageName' && col.key !== 'plantType' && col.key !== 'name'">
                         {{ element[col.key] }}
                     </ng-container>
                     
