@@ -32,14 +32,12 @@
                         {{ element.plantType?.name }}
                     </ng-container>
 
-                    <ng-container *ngIf="col.key === 'name'">
-                        <app-plante-information></app-plante-information>
-                    </ng-container>
-                    
-                    <ng-container *ngIf="col.key !== 'imageName' && col.key !== 'plantType' && col.key !== 'name'">
+                    <ng-container class="name" *ngIf="col.key !== 'imageName' && col.key !== 'plantType'">
+                        <ng-container *ngIf="col.key === 'name'">
+                            <button (click)="showPlantInfo(element)" mat-mini-fab color="accent"><mat-icon>info</mat-icon></button>
+                        </ng-container>
                         {{ element[col.key] }}
                     </ng-container>
-                    
                 </td>
             </ng-container>
 

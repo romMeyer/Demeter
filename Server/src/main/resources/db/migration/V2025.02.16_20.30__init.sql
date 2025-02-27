@@ -1,8 +1,3 @@
-drop table if exists purchase;
-drop table if exists client;
-drop table if exists dish;
-
-
 CREATE TABLE plant_type (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
@@ -13,6 +8,8 @@ CREATE TABLE plant (
     name VARCHAR(255) NOT NULL,
     type_id INTEGER,
     image_name VARCHAR(255),
+    debut_recolte TIMESTAMP,
+    fin_recolte TIMESTAMP,
     CONSTRAINT fk_type FOREIGN KEY (type_id) REFERENCES plant_type(id) ON DELETE CASCADE
 );
 

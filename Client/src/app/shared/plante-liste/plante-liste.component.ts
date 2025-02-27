@@ -5,6 +5,7 @@ import { PlanteUserDto } from '../../core/Dto/PlanteUserDto';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
+import { PlantInformationComponent } from '../plante-information/plante-information.component';
 
 @Component({
   selector: 'app-plante-liste',
@@ -28,6 +29,8 @@ export class PlanteListeComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  constructor(public dialog: MatDialog){}
+
   ngOnChanges() {
     this.plantes.data = this.data;
 
@@ -50,5 +53,15 @@ export class PlanteListeComponent {
   toggleDeleteButton(){
     this.showDeleteButton = !this.showDeleteButton;
     console.log("toggle : " , this.showDeleteButton)
+  }
+
+  showPlantInfo(data: PlanteDto | PlanteUserDto){
+    const isPlant = (data as PlanteUserDto).plant == null;
+    const plant: PlanteDto = isPlant ? (data as PlanteDto) : (data as PlanteUserDto).plant
+    console.log("plant : ", plant)
+    const dialogRef = this.dialog.open(PlantInformationComponent, {
+          data: {plant: plant }
+        });
+      
   }
 }
