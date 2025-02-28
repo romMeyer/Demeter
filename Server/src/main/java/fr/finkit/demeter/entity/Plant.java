@@ -1,11 +1,15 @@
 package fr.finkit.demeter.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -20,11 +24,24 @@ public class Plant implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "image_name")
     private String imageName;
+
+    @Column(name = "debut_recolte")
+    private String debutRecolte;
+
+    @Column(name = "fin_recolte")
+    private String finRecolte;
 
     @JoinColumn(name = "type_id")
     @ManyToOne(fetch = FetchType.EAGER)
     private PlantType plantType;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "plant", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Set<Recette> recetteSet = new HashSet<>();
 
 }

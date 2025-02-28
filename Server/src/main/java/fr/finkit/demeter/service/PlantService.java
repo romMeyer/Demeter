@@ -13,12 +13,12 @@ public class PlantService {
 
     @Autowired
     private PlantRepository plantRepository;
-
-    public PlantService(PlantRepository plantRepository) {
-        this.plantRepository = plantRepository;
-    }
+    @Autowired
+    private RecetteService recetteService;
 
     public List<Plant> getAllPlants() {
+        //List<Plant> plants = plantRepository.findAll();
+        //plants.forEach(plant -> plant.setRecetteSet(recetteService.findAllByPlantId(Long.valueOf(plant.getId())))); // Force le chargement
         return plantRepository.findAll();
     }
 

@@ -8,8 +8,9 @@ CREATE TABLE plant (
     name VARCHAR(255) NOT NULL,
     type_id INTEGER,
     image_name VARCHAR(255),
-    debut_recolte TIMESTAMP,
-    fin_recolte TIMESTAMP,
+    description VARCHAR(255),
+    debut_recolte VARCHAR(2),
+    fin_recolte VARCHAR(2),
     CONSTRAINT fk_type FOREIGN KEY (type_id) REFERENCES plant_type(id) ON DELETE CASCADE
 );
 

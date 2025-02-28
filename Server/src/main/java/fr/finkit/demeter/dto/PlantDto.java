@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,6 +19,18 @@ public class PlantDto implements Serializable {
 
     @JsonProperty
     private String name;
+
+    @JsonProperty
+    private String description;
+
+    @JsonProperty
+    private List<RecetteDto> recetteList;
+
+    @JsonProperty
+    private String debutRecolte;
+
+    @JsonProperty
+    private String finRecolte;
 
     @JsonProperty
     private String imageName;

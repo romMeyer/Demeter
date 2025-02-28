@@ -24,8 +24,6 @@ public class ApiOpenController {
 
     @Autowired
     private PlantMapper plantMapper;
-    @Autowired
-    private UserService userService;
 
     @GetMapping("/plants")
     public ResponseEntity<List<PlantDto>> getAllPlants() {
