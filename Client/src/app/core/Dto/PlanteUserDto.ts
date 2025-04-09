@@ -1,7 +1,7 @@
-import { PlanteDto } from "./PlanteDto";
+import { PlanteCatalogueDto } from "./PlanteDto";
 
 export interface PlanteUserDto{
-    plant: PlanteDto
+    plant: PlanteCatalogueDto
     arrose: Date;
     arrosage: Date;
 }

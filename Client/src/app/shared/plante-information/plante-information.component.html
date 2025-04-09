@@ -2,4 +2,6 @@
 <mat-dialog-content>
   <img [src]="'assets/images/' + plant.imageName + '.png'" alt="{{plant.name}}" width="400">
   {{ plant.id }} <b>{{ plant.name }}</b>
+  <br>
+  {{ plant.recetteList | json}}
 </mat-dialog-content>

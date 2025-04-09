@@ -1,12 +1,15 @@
 package fr.finkit.demeter.service;
 
 import fr.finkit.demeter.entity.Plant;
+import fr.finkit.demeter.entity.Recette;
 import fr.finkit.demeter.repository.PlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class PlantService {
@@ -17,8 +20,6 @@ public class PlantService {
     private RecetteService recetteService;
 
     public List<Plant> getAllPlants() {
-        //List<Plant> plants = plantRepository.findAll();
-        //plants.forEach(plant -> plant.setRecetteSet(recetteService.findAllByPlantId(Long.valueOf(plant.getId())))); // Force le chargement
         return plantRepository.findAll();
     }
 
@@ -36,6 +37,15 @@ public class PlantService {
 
     public List<Plant> findAllByUserId(Long userId) {
         return plantRepository.findAllByUserId(userId);
+    }
+
+    public Plant getPlantDetailById(Long id) {
+        Plant plant = plantRepository.findById(id).orElse(null);
+        if(plant == null) return null;
+        Set<Recette> recetteList = recetteService.findAllByPlantId(Long.valueOf(plant.getId()));
+        recetteList.forEach(r -> r.setPlant(null));
+        plant.setRecettes(recetteList);
+        return plant;
     }
 }
 

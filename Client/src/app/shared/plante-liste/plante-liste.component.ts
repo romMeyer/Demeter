@@ -1,11 +1,13 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { PlanteDto } from '../../core/Dto/PlanteDto';
+import { PlanteCatalogueDto, PlanteDto } from '../../core/Dto/PlanteDto';
 import { PlanteUserDto } from '../../core/Dto/PlanteUserDto';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { PlantInformationComponent } from '../plante-information/plante-information.component';
+import { PlanteService } from '../../services/PlanteService';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-plante-liste',
@@ -14,27 +16,29 @@ import { PlantInformationComponent } from '../plante-information/plante-informat
 })
 export class PlanteListeComponent {
   @Input() title: string = '';
-  @Input() data!: PlanteDto[] | PlanteUserDto[];
+  @Input() data!: PlanteCatalogueDto[] | PlanteUserDto[];
   @Input() displayedColumns: string[] = [];
   @Input() columnsConfig: { key: string, label: string }[] = [];
   @Input() actionLabel: string = '';
-  @Input() actionHandler: (item: PlanteDto | PlanteUserDto) => void = () => {};
-  @Input() deleteActionHandler: (item: PlanteDto | PlanteUserDto) => void = () => {};
+  @Input() actionHandler: (item: PlanteCatalogueDto | PlanteUserDto) => void = () => {};
+  @Input() deleteActionHandler: (item: PlanteCatalogueDto | PlanteUserDto) => void = () => {};
   @Input() showRevokePlant : boolean = false;
   value: string = '';
   showDeleteButton: boolean = false;
+  plantDetailsSubject: Subject<PlanteDto> = new Subject<PlanteDto>();
+  plantDetails$ = this.plantDetailsSubject.asObservable();
 
-  plantes = new MatTableDataSource<PlanteDto | PlanteUserDto>(this.data);
+  plantes = new MatTableDataSource<PlanteCatalogueDto | PlanteUserDto>(this.data);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(public dialog: MatDialog){}
+  constructor(public dialog: MatDialog, public plantService: PlanteService){}
 
   ngOnChanges() {
     this.plantes.data = this.data;
 
-    this.plantes.filterPredicate = (data: PlanteDto | PlanteUserDto, filter: string) => {
+    this.plantes.filterPredicate = (data: PlanteCatalogueDto | PlanteUserDto, filter: string) => {
       const name = 'name' in data ? data.name : data.plant?.name;
       return name?.toLowerCase().includes(filter);
     };
@@ -52,16 +56,20 @@ export class PlanteListeComponent {
 
   toggleDeleteButton(){
     this.showDeleteButton = !this.showDeleteButton;
-    console.log("toggle : " , this.showDeleteButton)
   }
 
-  showPlantInfo(data: PlanteDto | PlanteUserDto){
-    const isPlant = (data as PlanteUserDto).plant == null;
-    const plant: PlanteDto = isPlant ? (data as PlanteDto) : (data as PlanteUserDto).plant
-    console.log("plant : ", plant)
-    const dialogRef = this.dialog.open(PlantInformationComponent, {
-          data: {plant: plant }
+  showPlantInfo(data: PlanteCatalogueDto | PlanteUserDto){
+    let isPlant = (data as PlanteUserDto).plant == null;
+    let plantId = isPlant ? (data as PlanteCatalogueDto).id : (data as PlanteUserDto).plant.id
+    this.plantService.getPlantById(plantId).subscribe({
+      next: (data) =>{ 
+        const dialogRef = this.dialog.open(PlantInformationComponent, {
+          data: {plant: data }
         });
+      }
+    })
+    
+    
       
   }
 }

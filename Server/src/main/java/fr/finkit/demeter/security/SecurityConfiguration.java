@@ -28,8 +28,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(registry ->{
                     registry.requestMatchers("/api-open/**").permitAll();
                     registry.requestMatchers("/api/auth/**").permitAll();
-                    registry.requestMatchers("/api-admin/**").permitAll();
-                    registry.requestMatchers("/api/**").permitAll();
+                    registry.requestMatchers("/api-admin/**").hasRole("ADMIN");
+                    registry.requestMatchers("/api/**").authenticated();
                     registry.anyRequest().authenticated();
                 })
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // 🔥 Ajout du filtre JWT

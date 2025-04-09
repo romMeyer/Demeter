@@ -39,7 +39,7 @@ public class PlantController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PlantDto> getPlantById(@PathVariable Long id) {
-        PlantDto plantDto = plantMapper.toDto(plantService.getPlantById(id).orElse(null));
+        PlantDto plantDto = plantMapper.toDto(plantService.getPlantDetailById(id));
         if(plantDto == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(plantDto);

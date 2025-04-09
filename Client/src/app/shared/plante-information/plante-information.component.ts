@@ -14,6 +14,5 @@ export class PlantInformationComponent implements OnInit{
   
   ngOnInit(): void {
     this.plant = this.data.plant;
-    console.log("this.plant", this.plant)
   }
 }

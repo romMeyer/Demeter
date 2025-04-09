@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { PlanteDto } from '../../../core/Dto/PlanteDto';
+import { PlanteCatalogueDto } from '../../../core/Dto/PlanteDto';
 import { PlanteService } from '../../../services/PlanteService';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,7 +8,6 @@ import { DialogueComponent } from '../../../shared/dialogue/dialogue.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { InfoComponent } from '../../../shared/info/info.component';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { PlantUserService } from '../../../services/PlantUserService';
 
 @Component({
@@ -25,7 +24,7 @@ import { PlantUserService } from '../../../services/PlantUserService';
   ],
 })
 export class CatalogueComponent {
-  plantes = new MatTableDataSource<PlanteDto>([]);  
+  plantes = new MatTableDataSource<PlanteCatalogueDto>([]);  
   displayedColumns: string[] = ['name', 'imageName', 'plantType', 'actions'];
   columnsConfig: {key: string, label: string}[] = [
     { key: 'name', label: 'Libellé' },
@@ -45,7 +44,7 @@ export class CatalogueComponent {
     this.planteService.getPlants().subscribe(data => {
       this.plantes.data = data;
 
-      this.plantes.filterPredicate = (data: PlanteDto, filter: string) => {
+      this.plantes.filterPredicate = (data: PlanteCatalogueDto, filter: string) => {
         return data.name?.toLowerCase().includes(filter);
       };
 
@@ -56,7 +55,7 @@ export class CatalogueComponent {
 
   }
 
-  ajouterPlante(plante: PlanteDto){
+  ajouterPlante(plante: PlanteCatalogueDto){
     this.plantUserService.addPlantUser(plante.id).subscribe({
       next: (response) =>{
         this.showInfo(plante)
@@ -67,7 +66,7 @@ export class CatalogueComponent {
     });
   }
 
-  showInfo(plante: PlanteDto){
+  showInfo(plante: PlanteCatalogueDto){
     this.info.openFromComponent(InfoComponent, {
       duration: 3000, // Temps d'affichage
       verticalPosition: 'top',
@@ -76,7 +75,7 @@ export class CatalogueComponent {
     });
   }
 
-  ajouterDialogue(plante: PlanteDto): void {
+  ajouterDialogue(plante: PlanteCatalogueDto): void {
       const dialogRef = this.dialogue.open(DialogueComponent, {
         width: '300px',
         data: {title:"Confirmer l'ajout", question:"Voulez-vous ajouter ", libellePlante: plante.name }

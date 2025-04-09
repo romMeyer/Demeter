@@ -1,18 +1,25 @@
 package fr.finkit.demeter.controller;
 
+import fr.finkit.demeter.dto.PlantCatalogueDto;
 import fr.finkit.demeter.dto.PlantDto;
+import fr.finkit.demeter.dto.RecetteDto;
 import fr.finkit.demeter.entity.Plant;
+import fr.finkit.demeter.entity.Recette;
 import fr.finkit.demeter.mapper.PlantMapper;
+import fr.finkit.demeter.mapper.RecetteMapper;
 import fr.finkit.demeter.service.PlantService;
+import fr.finkit.demeter.service.RecetteService;
 import fr.finkit.demeter.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @RestController
@@ -24,11 +31,22 @@ public class ApiOpenController {
 
     @Autowired
     private PlantMapper plantMapper;
+    @Autowired
+    private RecetteService recetteService;
+    @Autowired
+    private RecetteMapper recetteMapper;
 
     @GetMapping("/plants")
-    public ResponseEntity<List<PlantDto>> getAllPlants() {
+    public ResponseEntity<List<PlantCatalogueDto>> getAllPlants() {
         List<Plant> plantList = plantService.getAllPlants();
-        List<PlantDto> plantDtoList = plantList.stream().map(plantMapper::toDto).toList();
-        return ResponseEntity.ok(plantDtoList);
+        List<PlantCatalogueDto> plantCatalogueDtoList = plantList.stream().map(plantMapper::toCatalogueDto).toList();
+        return ResponseEntity.ok(plantCatalogueDtoList);
+    }
+
+    @GetMapping("/recettes/{idPlant}")
+    public ResponseEntity<List<RecetteDto>> getAllRecette(@PathVariable Long idPlant) {
+        Set<Recette> recetteList = recetteService.findAllByPlantId(idPlant);
+        List<RecetteDto> recetteDtoList = recetteList.stream().map(recetteMapper::toDto).toList();
+        return ResponseEntity.ok(recetteDtoList);
     }
 }

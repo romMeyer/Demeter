@@ -1,6 +1,5 @@
 package fr.finkit.demeter.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -41,7 +40,7 @@ public class Plant implements Serializable {
     private PlantType plantType;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "plant", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private Set<Recette> recetteSet = new HashSet<>();
+    @OneToMany(mappedBy = "plant", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private Set<Recette> recettes = new HashSet<>();
 
 }
