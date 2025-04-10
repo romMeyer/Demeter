@@ -1,5 +1,55 @@
 mat-toolbar {
     margin-bottom: 1%;
+}
 
+.dialog{
+    width: 1000px;
+}
+.title{
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    font-size: 18px;
+
+
+    .recolte{
+        display: flex;
+        flex-direction: row;
+        
+        
+        .mois{
+            background-color: #c49a6c;
+            &.recolte {
+                background-color: yellow;
+            }
+        }
+    }
+
+    .recettes{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        
+        .recette{
+            width: 25%;
+        }
+    }
+
+    .details{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+
+        img{
+            width: 300px;
+            border-radius: 20px;
+        }
+    }
 }
   

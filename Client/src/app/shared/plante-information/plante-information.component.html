@@ -1,7 +1,38 @@
-<h2 mat-dialog-title><b>{{ plant.name }}</b></h2>
-<mat-dialog-content>
-  <img [src]="'assets/images/' + plant.imageName + '.png'" alt="{{plant.name}}" width="400">
-  {{ plant.id }} <b>{{ plant.name }}</b>
-  <br>
-  {{ plant.recetteList | json}}
-</mat-dialog-content>
+<div class="dialog">
+  <h2 class="title" mat-dialog-title>{{ plant.name }}</h2>
+  <mat-dialog-content style="overflow-y: hidden;">
+    <div class="container">
+      <p>{{ plant.description }}</p>
+      <div class="recolte">
+        <ng-container *ngFor="let mois of moisList; let i = index">
+          <div class="mois" [ngClass]="{'recolte': isMonthInHarvest(i + 1)}">M</div>
+
+        </ng-container>
+      </div>
+
+      <div class="recettes">
+        <div class="recette" *ngFor="let recette of plant.recetteList">
+          <h4>{{ recette.name }}</h4>
+          <p><i>{{ recette.ingredient }}</i></p>
+          <p>{{ recette.description }}</p>
+        </div>
+      </div>
+
+      <div class="details">
+        <div class="infos">
+          <p><b>Famille</b><br> <i>{{ plant.name }}</i></p>
+          <p><b>Besoin en soleil</b><br> <i>{{ plant.name || '-' }}</i></p>
+          <p><b>Type</b><br> <i>{{ plant.plantType?.name || '-' }}</i></p>
+        </div>
+    
+        <div class="image">
+          <img [src]="'assets/images/' + plant.imageName + '.png'" alt="{{plant.name}}">
+        </div>
+      </div>
+
+    </div>
+
+
+
+  </mat-dialog-content>
+</div>

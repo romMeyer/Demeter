@@ -64,7 +64,7 @@ export class PlanteListeComponent {
     this.plantService.getPlantById(plantId).subscribe({
       next: (data) =>{ 
         const dialogRef = this.dialog.open(PlantInformationComponent, {
-          data: {plant: data }
+          data: {plant: data },
         });
       }
     })
