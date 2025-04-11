@@ -32,12 +32,22 @@ public class Plant implements Serializable {
     @Column(name = "debut_recolte")
     private String debutRecolte;
 
+    @Column(name = "frequence_arrosage")
+    private Integer frequenceArrosage;
+
+    @Column(name = "famille")
+    private String famille;
+
     @Column(name = "fin_recolte")
     private String finRecolte;
 
     @JoinColumn(name = "type_id")
     @ManyToOne(fetch = FetchType.EAGER)
     private PlantType plantType;
+
+    @JoinColumn(name = "besoin_soleil_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private BesoinSoleil besoinSoleil;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "plant", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)

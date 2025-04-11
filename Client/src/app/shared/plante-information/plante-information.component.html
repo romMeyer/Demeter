@@ -1,8 +1,9 @@
 <div class="dialog">
   <h2 class="title" mat-dialog-title>{{ plant.name }}</h2>
-  <mat-dialog-content style="overflow-y: hidden;">
+  <mat-dialog-content>
     <div class="container">
       <p>{{ plant.description }}</p>
+
       <div class="recolte">
         <div class="mois-wrapper">
           <ng-container *ngFor="let mois of moisList; let i = index">
@@ -12,14 +13,7 @@
         </div>
       </div>
 
-      <div class="recettes">
-        <div class="recette" *ngFor="let recette of plant .recetteList">
-          <h4>{{ recette.name }}</h4>
-          <p><i>{{ recette.ingredient }}</i></p>
-          <p>{{ recette.description }}</p>
-        </div>
-      </div>
-
+      <div class="title">Détails</div>
       <div class="details">
         <div class="infos">
           <p><b>Famille</b><br> <i>{{ plant.name }}</i></p>
@@ -32,6 +26,14 @@
         </div>
       </div>
 
+      <div class="title">Recettes</div>
+      <div class="recettes">
+        <div class="recette" *ngFor="let recette of plant .recetteList">
+          <h4>{{ recette.name }}</h4>
+          <p><i>{{ recette.ingredient }}</i></p>
+          <p>{{ recette.description }}</p>
+        </div>
+      </div>
     </div>
 
 

@@ -3,6 +3,11 @@ CREATE TABLE plant_type (
     name VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE besoin_soleil (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255)
+);
+
 CREATE TABLE plant (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -11,7 +16,11 @@ CREATE TABLE plant (
     description VARCHAR(255),
     debut_recolte VARCHAR(2),
     fin_recolte VARCHAR(2),
-    CONSTRAINT fk_type FOREIGN KEY (type_id) REFERENCES plant_type(id) ON DELETE CASCADE
+    besoin_soleil_id INTEGER,
+    frequence_arrosage INTEGER,
+    famille VARCHAR(255),
+    CONSTRAINT fk_type FOREIGN KEY (type_id) REFERENCES plant_type(id) ON DELETE CASCADE,
+    CONSTRAINT fk_besoin_soleil FOREIGN KEY (besoin_soleil_id) REFERENCES besoin_soleil(id) ON DELETE CASCADE
 );
 
 CREATE TABLE roles (
