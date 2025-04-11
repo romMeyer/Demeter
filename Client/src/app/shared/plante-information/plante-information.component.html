@@ -4,14 +4,16 @@
     <div class="container">
       <p>{{ plant.description }}</p>
       <div class="recolte">
-        <ng-container *ngFor="let mois of moisList; let i = index">
-          <div class="mois" [ngClass]="{'recolte': isMonthInHarvest(i + 1)}">M</div>
+        <div class="mois-wrapper">
+          <ng-container *ngFor="let mois of moisList; let i = index">
+            <div class="mois" [ngClass]="{'recoltable': isMonthInHarvest(i + 1)}">{{ moisList.at(i) }}</div>
 
-        </ng-container>
+          </ng-container>
+        </div>
       </div>
 
       <div class="recettes">
-        <div class="recette" *ngFor="let recette of plant.recetteList">
+        <div class="recette" *ngFor="let recette of plant .recetteList">
           <h4>{{ recette.name }}</h4>
           <p><i>{{ recette.ingredient }}</i></p>
           <p>{{ recette.description }}</p>

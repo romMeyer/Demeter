@@ -9,7 +9,6 @@ import fr.finkit.demeter.mapper.PlantMapper;
 import fr.finkit.demeter.mapper.RecetteMapper;
 import fr.finkit.demeter.service.PlantService;
 import fr.finkit.demeter.service.RecetteService;
-import fr.finkit.demeter.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +40,15 @@ public class ApiOpenController {
         List<Plant> plantList = plantService.getAllPlants();
         List<PlantCatalogueDto> plantCatalogueDtoList = plantList.stream().map(plantMapper::toCatalogueDto).toList();
         return ResponseEntity.ok(plantCatalogueDtoList);
+    }
+
+    @GetMapping("/plants/{id}")
+    public ResponseEntity<PlantDto> getPlantById(@PathVariable Long id) {
+        PlantDto plantDto = plantMapper.toDto(plantService.getPlantDetailById(id));
+        if(plantDto == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(plantDto);
+
     }
 
     @GetMapping("/recettes/{idPlant}")

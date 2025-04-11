@@ -9,7 +9,8 @@ import { PlanteDto } from '../../core/Dto/PlanteDto';
 })
 export class PlantInformationComponent implements OnInit{
   plant!: PlanteDto;
-  moisList = Array.from({ length: 12 });
+  //moisList = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"]
+  moisList = ["Jan", "Fev", "Mars", "Avr", "Mai", "Juin", "Juil", "Aout", "Sept", "Oct", "Nov", "Dec"]
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { plant: PlanteDto }) {}
   

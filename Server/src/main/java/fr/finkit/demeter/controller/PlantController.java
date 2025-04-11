@@ -37,14 +37,6 @@ public class PlantController {
     @Autowired
     private PlantUserMapper plantUserMapper;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PlantDto> getPlantById(@PathVariable Long id) {
-        PlantDto plantDto = plantMapper.toDto(plantService.getPlantDetailById(id));
-        if(plantDto == null)
-            return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(plantDto);
-
-    }
 
     @PostMapping
     public ResponseEntity<PlantDto> createPlant(@RequestBody PlantDto PlantDto) {
