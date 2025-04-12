@@ -16,5 +16,8 @@ export interface PlanteDto{
     description: string;
     debutRecolte: string;
     finRecolte: string;
+    famille: string;
+    besoinSoleil: string;
+    frequenceArrosage: number;
     recetteList: RecetteDto[];
 }

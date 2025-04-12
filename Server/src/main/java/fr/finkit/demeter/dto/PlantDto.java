@@ -36,5 +36,14 @@ public class PlantDto implements Serializable {
     private String imageName;
 
     @JsonProperty
+    private String frequenceArrosage;
+
+    @JsonProperty
+    private String famille;
+
+    @JsonProperty
+    private String besoinSoleil;
+
+    @JsonProperty
     private PlantType plantType;
 }
