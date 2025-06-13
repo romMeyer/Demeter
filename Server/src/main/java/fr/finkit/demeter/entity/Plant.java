@@ -49,7 +49,6 @@ public class Plant implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private BesoinSoleil besoinSoleil;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "plant", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<Recette> recettes = new HashSet<>();
 

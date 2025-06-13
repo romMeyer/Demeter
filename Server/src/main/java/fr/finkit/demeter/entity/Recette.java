@@ -1,5 +1,7 @@
 package fr.finkit.demeter.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -35,6 +37,7 @@ public class Recette implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "plant_id")
+    @JsonIgnoreProperties("plant")
     private Plant plant;
 
 }

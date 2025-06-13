@@ -47,7 +47,7 @@ public class PlantUserService {
 
         PlantUser plantUser = findByUserIdAndPlantId(plant, user);
         plantUser.setArrose(Date.from(now.toInstant(ZoneOffset.UTC)));
-        plantUser.setArrosage(Date.from(now.plusDays(3).toInstant(ZoneOffset.UTC)));
+        plantUser.setArrosage(Date.from(now.plusDays(plant.getFrequenceArrosage()).toInstant(ZoneOffset.UTC)));
 
         return plantUserRepository.save(plantUser);
     }
