@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { PlanteUserDto } from '../../../core/Dto/PlanteUserDto';
-import { PlanteService } from '../../../services/PlanteService';
+import { PlanteService } from '../../../services/plante.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -9,7 +9,7 @@ import { DialogueComponent } from '../../../shared/dialogue/dialogue.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { InfoComponent } from '../../../shared/info/info.component';
 import { Router } from '@angular/router';
-import { PlantUserService } from '../../../services/PlantUserService';
+import { PlantUserService } from '../../../services/plantUser.service';
  
 
 @Component({

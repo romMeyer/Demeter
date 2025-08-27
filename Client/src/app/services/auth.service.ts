@@ -6,7 +6,7 @@ import { RegisterUserDto } from '../core/Dto/RegisterDto';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Role } from '../core/enum/Role';
 import { Router } from '@angular/router';
-import { PlantUserService } from './PlantUserService';
+import { PlantUserService } from './plantUser.service';
 
 @Injectable({
   providedIn: 'root'

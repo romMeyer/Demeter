@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/AuthService';
+import { AuthService } from '../../services/auth.service';
 import { Role } from '../../core/enum/Role';
-import { PlantUserService } from '../../services/PlantUserService';
+import { PlantUserService } from '../../services/plantUser.service';
 
 @Component({
   selector: 'app-sidenav',

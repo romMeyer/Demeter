@@ -6,7 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { PlantInformationComponent } from '../plante-information/plante-information.component';
-import { PlanteService } from '../../services/PlanteService';
+import { PlanteService } from '../../services/plante.service';
 import { Observable, Subject } from 'rxjs';
 
 @Component({

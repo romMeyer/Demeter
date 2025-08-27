@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import { AuthService } from '../services/AuthService';
+import { AuthService } from '../services/auth.service';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { PlantInformationComponent } from './plante-information/plante-information.component';

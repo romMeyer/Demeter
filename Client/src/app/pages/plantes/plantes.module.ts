@@ -4,7 +4,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { PlantesComponent } from './plantes/plantes.component';
 import { CatalogueComponent } from './catalogue/catalogue.component';
-import { PlanteService } from '../../services/PlanteService';
+import { PlanteService } from '../../services/plante.service';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from '../../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSortModule } from '@angular/material/sort';
-import { PlantUserService } from '../../services/PlantUserService';
+import { PlantUserService } from '../../services/plantUser.service';
 
 @NgModule({
   declarations: [

@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { PlanteCatalogueDto } from '../../../core/Dto/PlanteDto';
-import { PlanteService } from '../../../services/PlanteService';
+import { PlanteService } from '../../../services/plante.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -8,7 +8,7 @@ import { DialogueComponent } from '../../../shared/dialogue/dialogue.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { InfoComponent } from '../../../shared/info/info.component';
-import { PlantUserService } from '../../../services/PlantUserService';
+import { PlantUserService } from '../../../services/plantUser.service';
 
 @Component({
   selector: 'app-catalogue',
