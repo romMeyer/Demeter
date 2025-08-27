@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { InfoComponent } from '../../../shared/info/info.component';
 import { Router } from '@angular/router';
 import { PlantUserService } from '../../../services/plantUser.service';
+import { ToastService } from '../../../services/toast.service';
  
 
 @Component({
@@ -29,7 +30,12 @@ export class PlantesComponent {
   value: string = '';
 
 
-  constructor(private planteService: PlanteService, private plantUserService: PlantUserService, public dialogue: MatDialog, private info: MatSnackBar, private router: Router){}
+  constructor(private planteService: PlanteService, 
+    private plantUserService: PlantUserService, 
+    public dialogue: MatDialog, 
+    private info: MatSnackBar, 
+    private router: Router,
+    private toastService: ToastService){}
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -69,7 +75,7 @@ export class PlantesComponent {
   arroserPlante(plantUser: PlanteUserDto): void {
     this.plantUserService.waterPlantUser(plantUser.plant.id).subscribe({
       next: () =>{
-        this.showInfo(plantUser.plant.name, 'a été arrosé(e) !');
+        this.toastService.show(plantUser.plant.name, 'a été arrosé(e) !')
         this.plantUserService.getNumberPlantUserNeedWatering();
         this.fetchPlants();
       },
@@ -77,16 +83,6 @@ export class PlantesComponent {
         console.error("Arrosage raté : ", error)
       }
     })
-  }
-
-  showInfo(plantName: string, message: string){
-    this.info.openFromComponent(InfoComponent, {
-      duration: 3000,
-      verticalPosition: 'top',
-      horizontalPosition: 'center',
-      panelClass: ['custom-snackbar'],
-      data: { accentuateWord: `${plantName}`, content: message }
-    });
   }
 
   applyFilter(value: string): void {
@@ -130,7 +126,7 @@ export class PlantesComponent {
   deletePlantUser(plantUser: PlanteUserDto): void {
     this.plantUserService.deletePlantUser(plantUser.plant.id).subscribe({
       next: (response) =>{
-        this.showInfo(plantUser.plant.name, 'a été supprimé(e) !')
+        this.toastService.show(plantUser.plant.name, 'a été supprimé(e) !')
         this.fetchPlants();
       },
       error: (error) =>{

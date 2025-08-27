@@ -1,31 +1,41 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
 
-@Component({  
+@Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.scss']
 })
-export class InfoComponent {
+export class InfoComponent implements OnInit, OnDestroy {
   progress = 100;
-  interval: any;
+  private intervalId: any;
 
-  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: {content:string, accentuateWord:string},
-  private info: MatSnackBarRef<InfoComponent>) {}
+  constructor(
+    @Inject(MAT_SNACK_BAR_DATA) public data: any,
+    private snackBarRef: MatSnackBarRef<InfoComponent>
+  ) {}
 
-  closeWindow(){
-    this.info.dismiss();
-    clearInterval(this.interval);
-  }
+  ngOnInit() {
+    console.log("data", this.data)
+    const duration = this.data.duration || 3000
+    const step = 100 / ((duration-400) / 100)
 
-  ngOnInit(): void {
-    const step = 100 / (2900 / 100)
-    this.interval = setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.progress -= step;
       if (this.progress <= 0) {
-        clearInterval(this.interval);
+        clearInterval(this.intervalId);
       }
     }, 100);
   }
-  
+
+  ngOnDestroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
+
+  // 👉 Méthode pour fermer le toast manuellement
+  closeWindow() {
+    this.snackBarRef.dismiss();
+  }
 }

@@ -7,8 +7,8 @@ import { MatSort } from '@angular/material/sort';
 import { DialogueComponent } from '../../../shared/dialogue/dialogue.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { InfoComponent } from '../../../shared/info/info.component';
 import { PlantUserService } from '../../../services/plantUser.service';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-catalogue',
@@ -34,7 +34,12 @@ export class CatalogueComponent {
   value: string = '';
 
 
-  constructor(private planteService: PlanteService, private plantUserService: PlantUserService, private dialogue: MatDialog, private info: MatSnackBar){}
+  constructor(
+    private planteService: PlanteService, 
+    private plantUserService: PlantUserService, 
+    private dialogue: MatDialog, 
+    private info: MatSnackBar,
+    private toastService: ToastService){}
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -58,20 +63,11 @@ export class CatalogueComponent {
   ajouterPlante(plante: PlanteCatalogueDto){
     this.plantUserService.addPlantUser(plante.id).subscribe({
       next: (response) =>{
-        this.showInfo(plante)
+        this.toastService.show(plante.name, 'a été ajouté !');
       },
       error: (error) =>{
         console.error("Ajout raté")
       }
-    });
-  }
-
-  showInfo(plante: PlanteCatalogueDto){
-    this.info.openFromComponent(InfoComponent, {
-      duration: 3000, // Temps d'affichage
-      verticalPosition: 'top',
-      horizontalPosition: 'center',
-      data: { accentuateWord: `${plante.name}`, content: 'a été ajouté !' }
     });
   }
 
