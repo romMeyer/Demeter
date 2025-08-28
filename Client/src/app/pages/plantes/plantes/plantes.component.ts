@@ -65,7 +65,7 @@ export class PlantesComponent {
       },
       error: (error) => {
         if (error.status === 403) {
-          console.warn("🚨 Accès interdit (403), redirection vers /login...");
+          this.toastService.error('Internal Server Error');
           this.router.navigate(['/login']);
         }
       }
@@ -80,6 +80,7 @@ export class PlantesComponent {
         this.fetchPlants();
       },
       error: (error) =>{
+        this.toastService.error('Internal Server Error');
         console.error("Arrosage raté : ", error)
       }
     })
@@ -130,6 +131,7 @@ export class PlantesComponent {
         this.fetchPlants();
       },
       error: (error) =>{
+        this.toastService.error('Internal Server Error');
         console.error("Suppréssion raté : ", error)
       }
     });

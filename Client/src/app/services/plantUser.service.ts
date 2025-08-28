@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ToastService } from './toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class PlantUserService {
   private plantNeedWateringSubject: BehaviorSubject<any> = new BehaviorSubject<Boolean>(false);
   public plantNeedWatering$ = this.plantNeedWateringSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastService: ToastService) { }
 
   addPlantUser(plantId: number): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/api/plants/user`, `${plantId}`);
@@ -31,6 +32,7 @@ export class PlantUserService {
         this.plantNeedWateringSubject.next(response);
       },
       error: (error) => {
+        this.toastService.error('Internal Server Error');
         console.error('Erreur lors de la récupération des données :', error);
       }
     });

@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PlantInformationComponent } from '../plante-information/plante-information.component';
 import { PlanteService } from '../../services/plante.service';
 import { Observable, Subject } from 'rxjs';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-plante-liste',
@@ -33,7 +34,7 @@ export class PlanteListeComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(public dialog: MatDialog, public plantService: PlanteService){}
+  constructor(public dialog: MatDialog, public plantService: PlanteService, private toastService: ToastService){}
 
   ngOnChanges() {
     this.plantes.data = this.data;
@@ -66,6 +67,9 @@ export class PlanteListeComponent {
         const dialogRef = this.dialog.open(PlantInformationComponent, {
           data: {plant: data },
         });
+      },
+      error: (error) =>{
+        this.toastService.error('Internal Server Error');
       }
     })
     

@@ -43,7 +43,7 @@ export class AuthService {
         this.router.navigate(['/plantes']);
       },
       error: (error) => {
-        this.toastService.error('mauvais identifiant', 5000)
+        this.toastService.error('mauvais identifiant');
         console.error('Erreur lors de la connexion:', error);
       }
     });
@@ -64,6 +64,7 @@ export class AuthService {
         this.router.navigate(['/plantes']);
       },
       error: (error) => {
+        this.toastService.error('Internal Server Error');
         console.error('Erreur lors de l’inscription:', error);
       }
     });
