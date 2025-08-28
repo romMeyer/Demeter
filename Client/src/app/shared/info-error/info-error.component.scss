@@ -1,0 +1,13 @@
+@use "../../../styles.scss" as styles;
+
+.snackbar {
+    color: styles.$warn-color;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button{
+    margin-left: auto;
+}

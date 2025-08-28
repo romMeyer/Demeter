@@ -1,0 +1,9 @@
+<div class="snackbar">
+    <mat-icon>check_circle</mat-icon>
+    <b>ERR: </b> {{ data.content }}
+  <button mat-icon-button color="warn" (click)="closeWindow()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>

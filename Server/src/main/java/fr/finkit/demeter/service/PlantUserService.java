@@ -29,7 +29,7 @@ public class PlantUserService {
         now = LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0);
 
         plantUser.setArrose(Date.from(now.toInstant(ZoneOffset.UTC)));
-        plantUser.setArrosage(Date.from(now.plusDays(3).toInstant(ZoneOffset.UTC)));
+        plantUser.setArrosage(Date.from(now.plusDays(plant.getFrequenceArrosage()).toInstant(ZoneOffset.UTC)));
 
         return plantUserRepository.save(plantUser);
     }

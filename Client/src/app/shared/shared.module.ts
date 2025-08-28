@@ -15,10 +15,10 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import { AuthService } from '../services/auth.service';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { PlantInformationComponent } from './plante-information/plante-information.component';
+import { InfoErrorComponent } from './info-error/info-error.component';
 
 
 @NgModule({
@@ -26,6 +26,7 @@ import { PlantInformationComponent } from './plante-information/plante-informati
     TitleComponent,
     DialogueComponent,
     InfoComponent,
+    InfoErrorComponent,
     PlanteListeComponent,
     SidenavComponent,
     PlantInformationComponent
@@ -53,6 +54,7 @@ import { PlantInformationComponent } from './plante-information/plante-informati
     TitleComponent,
     DialogueComponent,
     InfoComponent,
+    InfoErrorComponent,
     PlanteListeComponent,
     SidenavComponent,
     PlantInformationComponent

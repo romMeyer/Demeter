@@ -76,7 +76,6 @@ export class LoginComponent {
       return;
     }
     this.authService.login(this.loginForm.value);
-    console.log('Form Submitted:', this.loginForm.value);
   }
 
   onSubmitRegister() {

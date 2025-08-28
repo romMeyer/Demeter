@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { LoginUserDto } from '../core/Dto/LoginUserDto';
 import { RegisterUserDto } from '../core/Dto/RegisterDto';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Role } from '../core/enum/Role';
 import { Router } from '@angular/router';
-import { PlantUserService } from './plantUser.service';
+import { ToastService } from './toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class AuthService {
   private jwtHelper = new JwtHelperService();
 
 
-  constructor(private http: HttpClient, private router: Router, private plantUserService: PlantUserService) {
+  constructor(private http: HttpClient, private router: Router, private toastService: ToastService) {
     const token = localStorage.getItem('token');
     if (token && !this.jwtHelper.isTokenExpired(token)) {
       const decodedToken: any = this.jwtHelper.decodeToken(token);
@@ -43,6 +43,7 @@ export class AuthService {
         this.router.navigate(['/plantes']);
       },
       error: (error) => {
+        this.toastService.error('mauvais identifiant', 5000)
         console.error('Erreur lors de la connexion:', error);
       }
     });

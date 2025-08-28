@@ -15,7 +15,7 @@
         </ng-container>
     </div>
 
-    <p *ngIf="!data.length">Plantes en cours de chargement...</p>
+    <h1 *ngIf="!data.length">Aucune plante ? Ajoutez-les depuis le catalogue !</h1>
 
     <div [hidden]="!data.length" class="mat-elevation-z8">
         <table mat-table [dataSource]="plantes" matSort>   
