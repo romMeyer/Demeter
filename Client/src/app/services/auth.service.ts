@@ -22,9 +22,9 @@ export class AuthService {
     const token = localStorage.getItem('token');
     if (token && !this.jwtHelper.isTokenExpired(token)) {
       const decodedToken: any = this.jwtHelper.decodeToken(token);
-      const role: Role = decodedToken.role;
-      this.currentUserSubject.next(role);
-      console.log("Utilisateur récupéré depuis le stockage:", { token, role });
+      const roles: Role = decodedToken.roles;
+      this.currentUserSubject.next(roles);
+      console.log("Utilisateur récupéré depuis le stockage:", { token, roles });
     }
 
   }
@@ -36,10 +36,10 @@ export class AuthService {
         localStorage.setItem('token', response.token);
         // Décoder le token pour obtenir le rôle
         const decodedToken: any = this.jwtHelper.decodeToken(response.token);
-        const role: Role = decodedToken.role;
+        const roles: Role = decodedToken.roles;
 
         // Mettre à jour le BehaviorSubject
-        this.currentUserSubject.next(role);
+        this.currentUserSubject.next(roles);
         this.router.navigate(['/plantes']);
       },
       error: (error) => {
@@ -57,10 +57,10 @@ export class AuthService {
 
         // Décoder le token pour obtenir le rôle
         const decodedToken: any = this.jwtHelper.decodeToken(response.token);
-        const role: Role = decodedToken.role;  // Assigner à une variable de type UserRole
+        const roles: Role = decodedToken.roles;  // Assigner à une variable de type UserRole
 
         // Mettre à jour le BehaviorSubject
-        this.currentUserSubject.next(role);
+        this.currentUserSubject.next(roles);
         this.router.navigate(['/plantes']);
       },
       error: (error) => {

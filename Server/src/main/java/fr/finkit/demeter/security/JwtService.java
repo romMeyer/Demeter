@@ -1,5 +1,6 @@
-package fr.finkit.demeter.service;
+package fr.finkit.demeter.security;
 
+import fr.finkit.demeter.service.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -15,8 +16,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import fr.finkit.demeter.repository.UserRepository; // Assurez-vous que ce repository existe
 
 @Service
 public class JwtService {
@@ -61,7 +60,7 @@ public class JwtService {
         String role = userService.findRoleByUsername(username); // Méthode à implémenter dans le UserRepository
 
         // Ajouter le rôle aux claims
-        extraClaims.put("role", role); // Ajouter le rôle dans les claims
+        extraClaims.put("roles", role); // Ajouter le rôle dans les claims
 
         return Jwts
                 .builder()

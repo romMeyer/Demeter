@@ -27,7 +27,6 @@ import { PagesModule } from './pages/pages.module';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ]
 })
 export class AppComponent {

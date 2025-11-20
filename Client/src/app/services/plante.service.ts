@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PlanteCatalogueDto, PlanteDto } from '../core/Dto/PlanteDto';
+import { PlanteDto } from '../core/Dto/PlanteDto';
 
 @Injectable({
   providedIn: 'root'

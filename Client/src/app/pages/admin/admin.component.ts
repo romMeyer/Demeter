@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Role } from '../../core/enum/Role';
 import { UserDto } from '../../core/Dto/UserDto';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-admin',
@@ -14,10 +15,13 @@ export class AdminComponent {
   isSubmitted = false;
   displayedColumns: string[] = ['Role', 'Name', 'FirstName', 'LastName', "Action"];
   Role = Role;
-  users: UserDto[] = [
+  user$ = this.adminService.getUsers();
+  users!: UserDto[];
+
+  /*users: UserDto[] = [
     {firstname: "Romain", lastname: "Meyer", name: "admin@gmail.com", role: Role.ADMIN},
-    {firstname: "Clara", lastname: "Petit", name: "clara.petit@gmail.com", role: Role.GUEST}
-  ];
+    {firstname: "Clara", lastname: "Petit", name: "clara.petit@gmail.com", role: Role.USER}
+  ];*/
 
   plantTypes = [
      {id: 1, libelle: "Fruit"},
@@ -49,7 +53,7 @@ export class AdminComponent {
      {id: 1, libelle: "Crétacé"}
   ]
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private adminService: AdminService) {
 
     this.plantForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -62,6 +66,18 @@ export class AdminComponent {
       freq_arrosage: ['', [Validators.required]],
       famille: ['', [Validators.required, Validators.minLength(3)]]
     });
+  }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.adminService.getUsers().subscribe({
+      next: (users) => this.users = users,
+      error: (err) =>{
+        console.error(err);
+        this.users = [];
+      } 
+    })
   }
 
   get name() {

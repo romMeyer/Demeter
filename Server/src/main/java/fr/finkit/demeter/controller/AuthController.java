@@ -5,7 +5,7 @@ import fr.finkit.demeter.dto.LoginUserDto;
 import fr.finkit.demeter.dto.RegisterUserDto;
 import fr.finkit.demeter.entity.User;
 import fr.finkit.demeter.service.AuthenticationService;
-import fr.finkit.demeter.service.JwtService;
+import fr.finkit.demeter.security.JwtService;
 import fr.finkit.demeter.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

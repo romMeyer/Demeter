@@ -40,6 +40,9 @@ public class PlantController {
 
     @PostMapping
     public ResponseEntity<PlantDto> createPlant(@RequestBody PlantDto PlantDto) {
+        User user = userService.getCurrentUser();
+        if(user.getId() == null || !Objects.equals(user.getRole().getName(), "ADMIN")) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
         PlantDto plantDto = plantMapper.toDto(plantService.savePlant(plantMapper.toEntity(PlantDto)));
         return new ResponseEntity<>(plantDto, HttpStatus.CREATED);
     }
