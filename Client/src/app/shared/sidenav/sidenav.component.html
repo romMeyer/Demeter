@@ -5,8 +5,8 @@
   <a mat-stroked-button color="accent" routerLink="/catalogue" class="navbarButton">Catalogue</a>
   
   <a *ngIf="(currentUser$ | async) == Role.GUEST || (currentUser$ | async) == null" mat-stroked-button color="accent" routerLink="/login" class="navbarButton">Se connecter</a>
+  <a *ngIf="(currentUser$ | async) == Role.ADMIN " mat-stroked-button color="accent" routerLink="/admin" class="navbarButton">Admin</a>
   <a *ngIf="(currentUser$ | async) !== Role.GUEST && (currentUser$ | async) !== null" mat-stroked-button color="accent" (click)="logout()" class="navbarButton">Se déconnecter</a>
   
-  <a *ngIf="(currentUser$ | async) == Role.ADMIN " mat-stroked-button color="accent" routerLink="/admin" class="navbarButton">Admin</a>
-  {{(currentUser$ | async)}}
+  <div style="position: fixed; bottom: 0">{{(currentUser$ | async)}}</div>
 </div>

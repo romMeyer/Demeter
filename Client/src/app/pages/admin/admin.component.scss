@@ -1,0 +1,60 @@
+@use "../../../styles.scss" as styles;
+
+.container{
+  display: flex;
+  flex-direction: row;
+}
+
+.add-plant{
+    display: flex !important;
+    flex-direction: reverse-column !important;
+    padding: 1%;
+    margin-left: 10px;
+    width: 500px;
+}
+
+.users{
+  width: 50%;
+}
+
+
+mat-card-title{
+  font-size: 23px;
+  padding-bottom: 50px;
+}
+
+mat-label{
+  font-size: 18px;
+}
+
+mat-form-field{
+  padding: 5px;
+  width: 45%;
+}
+
+mat-card{
+  background-color: rgba(styles.$primary-color, 0.7);
+}
+
+table{
+  margin-left: 10%;
+  background-color: rgba(styles.$primary-color, 0.2);
+  table-layout: fixed;
+}
+
+th{
+  font-size: 20px; 
+  font-weight: bold;
+}
+
+td{
+  font-size: 18px;
+}
+
+.name-cell{
+  width: 40%;
+}
+
+button{
+  margin: 5px;
+}

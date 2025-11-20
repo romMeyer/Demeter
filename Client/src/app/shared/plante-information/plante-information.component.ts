@@ -20,8 +20,8 @@ export class PlantInformationComponent implements OnInit{
   
 
   isMonthInHarvest(month: number): boolean {
-    const debut = parseInt(this.plant.debutRecolte);
-    const fin = parseInt(this.plant.finRecolte);
+    const debut = parseInt(this.plant?.debutRecolte || '0');
+    const fin = parseInt(this.plant?.finRecolte || '0');
     if (isNaN(debut) || isNaN(fin)) return false;
   
     return debut <= fin

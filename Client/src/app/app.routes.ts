@@ -4,6 +4,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PlantesComponent } from './pages/plantes/plantes/plantes.component';
 import { CatalogueComponent } from './pages/plantes/catalogue/catalogue.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 
 export const routes: Routes = [
@@ -11,6 +12,7 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'plantes', component: PlantesComponent},
     {path: 'catalogue', component: CatalogueComponent},
+    {path: 'admin', component: AdminComponent},
     {path: "404", component: NotFoundComponent},
 
 

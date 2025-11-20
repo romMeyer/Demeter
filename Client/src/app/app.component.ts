@@ -8,6 +8,7 @@ import { PlantesModule } from './pages/plantes/plantes.module';
 import { AuthInterceptor } from './core/interceptor/auth.interceptor';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
+import { PagesModule } from './pages/pages.module';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
     MatButtonModule,
     MatIconModule,
     PlantesModule,
+    PagesModule,
     CommonModule,
     SharedModule
   ],

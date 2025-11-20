@@ -14,8 +14,8 @@ export interface PlanteDto{
     plantType?: PlantType;
     imageName: string;
     description: string;
-    debutRecolte: string;
-    finRecolte: string;
+    debutRecolte?: string;
+    finRecolte?: string;
     famille: string;
     besoinSoleil: string;
     frequenceArrosage: number;
