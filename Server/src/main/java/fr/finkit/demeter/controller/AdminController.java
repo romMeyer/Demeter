@@ -26,9 +26,6 @@ public class AdminController {
 
     @GetMapping("/users")
     public ResponseEntity<List<UserDto>> getAllUsers() {
-        User user = userService.getCurrentUser();
-        if(user.getId() == null || !Objects.equals(user.getRole().getName(), "ADMIN")) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-
         List<User> userList = userService.getAllUsers();
         List<UserDto> userDtoList = userList.stream().map(userMapper::toDto).toList();
         return ResponseEntity.ok(userDtoList);

@@ -9,4 +9,4 @@
   <a *ngIf="(currentUser$ | async) !== Role.GUEST && (currentUser$ | async) !== null" mat-stroked-button color="accent" (click)="logout()" class="navbarButton">Se déconnecter</a>
   
   <div style="position: fixed; bottom: 0">{{(currentUser$ | async)}}</div>
-</div>
+</div>  

@@ -7,6 +7,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import java.security.Key;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -60,7 +61,7 @@ public class JwtService {
         String role = userService.findRoleByUsername(username); // Méthode à implémenter dans le UserRepository
 
         // Ajouter le rôle aux claims
-        extraClaims.put("roles", role); // Ajouter le rôle dans les claims
+        extraClaims.put("role", role); // Ajouter le rôle dans les claims
 
         return Jwts
                 .builder()
@@ -97,5 +98,9 @@ public class JwtService {
     private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    public String extractRole(String token) {
+        return extractClaim(token, claims -> claims.get("role", String.class));
     }
 }
