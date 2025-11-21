@@ -27,7 +27,7 @@ public class AuthenticationService {
                 registerUserDto.getFirstName(),
                 registerUserDto.getLastName(),
                 registerUserDto.getUsername(),
-                roleService.findByName("USER"),
+                roleService.findByName("ROLE_USER"),
                 passwordEncoder.encode(registerUserDto.getPassword()));
         return userService.saveUser(user);
     }

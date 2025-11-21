@@ -4,6 +4,8 @@ import { AuthService } from '../../services/auth.service';
 import { Role } from '../../core/enum/Role';
 import { UserDto } from '../../core/Dto/UserDto';
 import { AdminService } from '../../services/admin.service';
+import { BehaviorSubject } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-admin',
@@ -15,8 +17,12 @@ export class AdminComponent {
   isSubmitted = false;
   displayedColumns: string[] = ['Role', 'Name', 'FirstName', 'LastName', "Action"];
   Role = Role;
-  user$ = this.adminService.getUsers();
-  users!: UserDto[];
+
+  usersSubject: BehaviorSubject<UserDto[]> = new BehaviorSubject<UserDto[]>([]);
+  users$ = this.usersSubject.asObservable();
+  dataSource = new MatTableDataSource<UserDto>();
+  
+
 
   /*users: UserDto[] = [
     {firstname: "Romain", lastname: "Meyer", name: "admin@gmail.com", role: Role.ADMIN},
@@ -72,10 +78,11 @@ export class AdminComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.adminService.getUsers().subscribe({
-      next: (users) => this.users = users,
+      next: (users) =>{
+         this.dataSource.data = users
+        },
       error: (err) =>{
         console.error(err);
-        this.users = [];
       } 
     })
   }

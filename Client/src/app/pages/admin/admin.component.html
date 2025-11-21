@@ -118,27 +118,27 @@
   </mat-card>
 
   <div class="users">
-    <table mat-table [dataSource]="users  " class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="Name">
         <th class="name-cell" mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let user"> {{user.name}} </td>
+        <td mat-cell *matCellDef="let user"> {{user.username}} </td>
       </ng-container>
 
       <ng-container matColumnDef="FirstName">
         <th mat-header-cell *matHeaderCellDef>Prénom</th>
-        <td mat-cell *matCellDef="let user"> {{user.firstname}} </td>
+        <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>
       </ng-container>
 
       <ng-container matColumnDef="LastName">
         <th mat-header-cell *matHeaderCellDef>Nom</th>
-        <td mat-cell *matCellDef="let user"> {{user.lastname}} </td>
+        <td mat-cell *matCellDef="let user"> {{user.lastName}} </td>
       </ng-container>
 
       <ng-container matColumnDef="Role">
         <th mat-header-cell *matHeaderCellDef>Rôle</th>
         <td mat-cell *matCellDef="let user">
-          <mat-icon *ngIf="user.roles == Role.ADMIN" matTooltip="ADMIN">supervised_user_circle</mat-icon>
-          <mat-icon *ngIf="user.roles == Role.USER" matTooltip="USER">account_circle</mat-icon>
+          <mat-icon *ngIf="user.role == Role.ADMIN" matTooltip="ADMIN">supervised_user_circle</mat-icon>
+          <mat-icon *ngIf="user.role == Role.USER" matTooltip="USER">account_circle</mat-icon>
         </td>
       </ng-container>
 

@@ -1,6 +1,7 @@
 package fr.finkit.demeter.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import fr.finkit.demeter.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,4 +24,7 @@ public class UserDto implements Serializable {
 
     @JsonProperty
     private String username;
+
+    @JsonProperty
+    private String role;
 }
