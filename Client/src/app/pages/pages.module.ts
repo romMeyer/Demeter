@@ -14,10 +14,12 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatTableModule } from "@angular/material/table";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { EditUserComponent } from "./admin/edit-user/edit-user.component";
 
 @NgModule({
   declarations: [
     AdminComponent,
+    EditUserComponent,
     HomeComponent,
     LoginComponent,
     NotFoundComponent
@@ -36,11 +38,11 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     MatTableModule,
     MatIconModule,
     MatTooltipModule,
-    
 
 ],
   providers: [
     AdminComponent,
+    EditUserComponent,
     HomeComponent,
     LoginComponent,
     NotFoundComponent

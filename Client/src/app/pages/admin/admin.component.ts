@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Role } from '../../core/enum/Role';
@@ -6,6 +6,8 @@ import { UserDto } from '../../core/Dto/UserDto';
 import { AdminService } from '../../services/admin.service';
 import { BehaviorSubject } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @Component({
   selector: 'app-admin',
@@ -18,6 +20,11 @@ export class AdminComponent {
   displayedColumns: string[] = ['Role', 'Name', 'FirstName', 'LastName', "Action"];
   Role = Role;
 
+  // edit user
+  dialog = inject(MatDialog);
+  selectedUser: any = null;
+
+  // fetch users
   usersSubject: BehaviorSubject<UserDto[]> = new BehaviorSubject<UserDto[]>([]);
   users$ = this.usersSubject.asObservable();
   dataSource = new MatTableDataSource<UserDto>();
@@ -133,11 +140,22 @@ export class AdminComponent {
     console.log("Ajout de la plante")
   }
 
-  openEditDialog(user: any){
-    console.log(user)
+  openEditDialog(user: UserDto){
+    const dialogRef = this.dialog.open(EditUserComponent, {
+      width: '400px',
+      data: user,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log("User mis à jour :", result);
+        // ici tu appelles ton API update...
+      }
+    });
+
   }
 
-  openSupDialog(user: any){
+  openSupDialog(user: UserDto){
     console.log(user)
   }
 }
