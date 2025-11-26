@@ -1,5 +1,13 @@
-.form {
-  display: flex;
-  flex-direction: wrap;
-  gap: 15px;
+@use "../../../../styles.scss" as styles;
+
+.title{
+  font-size: 18px;
+}
+
+.content{
+  padding-top: 10px !important;
+}
+
+mat-form-field{
+  width: 250px;
 }

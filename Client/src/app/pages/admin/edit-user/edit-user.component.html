@@ -1,38 +1,39 @@
-<h2 mat-dialog-title>Éditer l’utilisateur</h2>
+<h2 mat-dialog-title class="title">Éditer l’utilisateur</h2>
 
-<div mat-dialog-content>
+<mat-dialog-content class="content">
   <form [formGroup]="form" class="form">
-
-    <mat-form-field appearance="outline">
-      <mat-label>Prénom</mat-label>
-      <input matInput formControlName="firstname">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Nom</mat-label>
-      <input matInput formControlName="lastname">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Email</mat-label>
-      <input matInput type="email" formControlName="email">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Rôle</mat-label>
-      <mat-select formControlName="role">
-        <mat-option *ngFor="let r of roles" [value]="r">
-          {{ r }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
+    <div class="container">
+      <mat-form-field appearance="outline">
+        <mat-label>Prénom</mat-label>
+        <input matInput formControlName="firstName">
+      </mat-form-field>
+        
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="lastName">
+      </mat-form-field>
+        
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="username">
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Rôle</mat-label>
+        <mat-select formControlName="role">
+          <mat-option *ngFor="let r of roles" [value]="r">
+            {{ r }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </form>
-</div>
-
-<div mat-dialog-actions align="end">
+</mat-dialog-content>
+  
+<mat-dialog-actions align="end">
   <button mat-button (click)="cancel()">Annuler</button>
-  <button mat-flat-button color="primary" (click)="save()" [disabled]="form.invalid">
+  <button mat-button color="accent" (click)="save()" [disabled]="form.invalid">
     Valider
   </button>
-</div>
+</mat-dialog-actions>
+  

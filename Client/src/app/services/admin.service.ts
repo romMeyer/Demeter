@@ -7,11 +7,16 @@ import { UserDto } from '../core/Dto/UserDto';
   providedIn: 'root'
 })
 export class AdminService {
+
   private apiUrl = 'http://localhost:8080'; 
 
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<UserDto[]> {
     return this.http.get<UserDto[]>(`${this.apiUrl}/api-admin/users`);
+  }
+
+  setUser(user: UserDto): Observable<Boolean> {
+    return this.http.post<Boolean>(`${this.apiUrl}/api-admin/user`, user);
   }
 }

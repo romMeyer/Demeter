@@ -15,6 +15,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { EditUserComponent } from "./admin/edit-user/edit-user.component";
+import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,10 @@ import { EditUserComponent } from "./admin/edit-user/edit-user.component";
     MatTableModule,
     MatIconModule,
     MatTooltipModule,
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogTitle
 
 ],
   providers: [

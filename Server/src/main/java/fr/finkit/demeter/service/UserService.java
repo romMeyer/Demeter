@@ -55,5 +55,9 @@ public class UserService {
     public String findRoleByUsername(String username) {
         return userRepository.findRoleByUsername(username)
     ;}
+
+    public Optional<User> getUser(Long id) {
+        return userRepository.findById(id);
+    }
 }
 

@@ -10,17 +10,18 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class EditUserComponent {
   form: FormGroup;
-  roles = ["ADMIN", "USER"];
+  roles = ["ROLE_ADMIN", "ROLE_USER"];
   
 constructor(
     private dialogRef: MatDialogRef<EditUserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: UserDto,
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({
-      firstname: [data.firstname, Validators.required],
-      lastname:  [data.lastname, Validators.required],
-      email:     [data.email, [Validators.required, Validators.email]],
+      id:        [data.id],
+      firstName: [data.firstName, Validators.required],
+      lastName:  [data.lastName, Validators.required],
+      username:  [data.username, [Validators.required, Validators.email]],
       role:      [data.role, Validators.required]
     });
   }

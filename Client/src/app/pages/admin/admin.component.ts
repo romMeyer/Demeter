@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-admin',
@@ -66,7 +67,7 @@ export class AdminComponent {
      {id: 1, libelle: "Crétacé"}
   ]
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private adminService: AdminService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private adminService: AdminService, private toastService:  ToastService) {
 
     this.plantForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -84,14 +85,52 @@ export class AdminComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    this.fetchUsers();
+  }
+
+  fetchUsers() {
     this.adminService.getUsers().subscribe({
-      next: (users) =>{
-         this.dataSource.data = users
-        },
-      error: (err) =>{
+      next: (users) => {
+        this.dataSource.data = users;
+      },
+      error: (err) => {
         console.error(err);
-      } 
-    })
+      }
+    });
+  }
+
+  onSubmitPlant() {
+    this.isSubmitted = true;
+    if (this.plantForm.invalid) {
+      return;
+    }
+    this.authService.login(this.plantForm.value);
+    console.log("Ajout de la plante")
+  }
+
+  openEditDialog(user: UserDto){
+    const dialogRef = this.dialog.open(EditUserComponent, {
+      width: '300px',
+      data: user,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log("User mis à jour :", result);
+        this.adminService.setUser(result).subscribe({
+          next: () => {
+            this.toastService.show(result.name, " mis à jour")
+            this.fetchUsers();
+          },
+          error: () => console.log("Erreur lors de l'édition")
+        });
+      }
+    });
+
+  }
+
+  openSupDialog(user: UserDto){
+    console.log(user)
   }
 
   get name() {
@@ -130,32 +169,4 @@ export class AdminComponent {
     return this.plantForm.get("famille");
   }
 
-  
-  onSubmitPlant() {
-    this.isSubmitted = true;
-    if (this.plantForm.invalid) {
-      return;
-    }
-    this.authService.login(this.plantForm.value);
-    console.log("Ajout de la plante")
-  }
-
-  openEditDialog(user: UserDto){
-    const dialogRef = this.dialog.open(EditUserComponent, {
-      width: '400px',
-      data: user,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log("User mis à jour :", result);
-        // ici tu appelles ton API update...
-      }
-    });
-
-  }
-
-  openSupDialog(user: UserDto){
-    console.log(user)
-  }
 }
