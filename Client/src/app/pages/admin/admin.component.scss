@@ -9,12 +9,12 @@
     display: flex !important;
     flex-direction: reverse-column !important;
     padding: 1%;
-    margin-left: 10px;
+    margin-left: 20px;
     width: 500px;
 }
 
 .users{
-  width: 50%;
+  width: 60%;
 }
 
 
@@ -37,7 +37,7 @@ mat-card{
 }
 
 table{
-  margin-left: 10%;
+  margin-left: 5%;
   background-color: rgba(styles.$primary-color, 0.2);
   table-layout: fixed;
 }

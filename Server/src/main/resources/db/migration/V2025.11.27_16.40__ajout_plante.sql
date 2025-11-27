@@ -1,0 +1,16 @@
+INSERT INTO demeter.plant (name,type_id,image_name,description,debut_recolte,fin_recolte,besoin_soleil_id,frequence_arrosage,famille) VALUES
+('Chou',2,'chou','[translate:Légume-feuille utilisé en soupe, salade ou fermenté.]','09','02',2,5,'Brassicaceae'),
+('Aubergine',2,'aubergine','[translate:Légume violet, idéal pour les gratins et ratatouilles.]','07','09',3,3,'Solanaceae'),
+('Butternut',2,'butternut','[translate:Courge douce et sucrée, parfaite en soupe ou gratin.]','09','11',3,7,'Cucurbitaceae'),
+('Navet',2,'navet','[translate:Légume-racine au goût doux, utilisé en pot-au-feu.]','10','04',2,4,'Brassicaceae'),
+('Salade',2,'salade','[translate:Feuilles vertes croquantes, base des entrées fraîches.]','04','10',2,2,'Asteraceae'),
+('Poireau',2,'poireau','Légume tige long et fin, utilisé en soupe et pot-au-feu.','09','02',2,5,'Amaryllidaceae'),
+('Courgette',2,'courgette','Légume fruit vert tendre, cuisiné grillé ou en ratatouille.','06','09',3,3,'Cucurbitaceae'),
+('Haricot vert',2,'haricot','Gousse verte fine et croquante, consommée entière.','07','09',3,4,'Fabaceae'),
+('Pois',2,'pois','Petits grains verts doux, consommés frais ou en conserve.','06','08',2,4,'Fabaceae'),
+('Betterave',2,'betterave','Racine rouge sucrée, utilisée crue ou cuite.','07','10',2,5,'Amaranthaceae'),
+('Oignon',2,'oignon','Bulbe piquant essentiel de la cuisine française.','07','09',3,4,'Amaryllidaceae'),
+('Ail',2,'ail','Bulbe aromatique utilisé cru ou cuit pour relever les plats.','07','09',3,3,'Amaryllidaceae'),
+('Épinard',2,'epinard','Feuilles vertes tendres riches en fer et vitamines.','03','05',2,3,'Amaranthaceae'),
+('Blette',2,'blette','Feuilles et côtes vertes, cuites à la vapeur ou en tarte.','06','12',2,3,'Amaranthaceae'),
+('Brocoli',2,'brocoli','Fleurs vertes denses, riches en antioxydants.','07','10',2,4,'Brassicaceae');

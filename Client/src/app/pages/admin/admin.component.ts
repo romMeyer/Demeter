@@ -59,7 +59,7 @@ export class AdminComponent {
   ]
 
   plantBesoinSoleil = [
-     {id: 1, libelle: "Pas beaucoup"},
+     {id: 1, libelle: "Peu"},
      {id: 2, libelle: "Moyen"},
      {id: 3, libelle: "Beaucoup"}
   ]
