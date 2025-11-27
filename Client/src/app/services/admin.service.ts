@@ -19,4 +19,8 @@ export class AdminService {
   setUser(user: UserDto): Observable<Boolean> {
     return this.http.post<Boolean>(`${this.apiUrl}/api-admin/user`, user);
   }
+
+  deleteUser(user: UserDto): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/api-admin/user`, {body: user});
+  }
 }

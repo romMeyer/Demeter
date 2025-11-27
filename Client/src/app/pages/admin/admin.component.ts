@@ -9,6 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { ToastService } from '../../services/toast.service';
+import { DialogueComponent } from '../../shared/dialogue/dialogue.component';
 
 @Component({
   selector: 'app-admin',
@@ -116,13 +117,12 @@ export class AdminComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log("User mis à jour :", result);
         this.adminService.setUser(result).subscribe({
           next: () => {
-            this.toastService.show(result.name, " mis à jour")
+            this.toastService.show(result.name, " mis à jour.")
             this.fetchUsers();
           },
-          error: () => console.log("Erreur lors de l'édition")
+          error: () => console.log("Erreur lors de l'édition.")
         });
       }
     });
@@ -130,7 +130,24 @@ export class AdminComponent {
   }
 
   openSupDialog(user: UserDto){
-    console.log(user)
+    const dialogRef = this.dialog.open(DialogueComponent, {
+      width: '300px',
+      data: {title:"Confirmer la supprésion", question:"Voulez-vous supprimer ", libellePlante: user.username }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.adminService.deleteUser(user).subscribe({
+          next: () =>{
+            this.toastService.show(user.username, " supprimé.")
+            this.fetchUsers();
+          },
+          error: ()=> console.log("Erreur lors de la suppression.")
+
+        })
+      }
+    })
+      
   }
 
   get name() {
