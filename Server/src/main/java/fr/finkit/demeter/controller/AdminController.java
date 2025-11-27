@@ -34,13 +34,24 @@ public class AdminController {
     public ResponseEntity<UserDto> editUser(@RequestBody UserDto userDto) {
         try {
             User user = userMapper.toEntity(userDto);
+            User userPass = userService.findByUsername(user.getUsername()).orElseThrow(null);
+
+            user.setPassword(userPass.getPassword());
             User saved = userService.saveUser(user);
             System.out.println(saved);
             return ResponseEntity.ok(userMapper.toDto(saved));
         }
         catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+
+    @DeleteMapping("/user")
+    public ResponseEntity<Void> deleteUser(@RequestBody UserDto userDto) {
+        User user = userMapper.toEntity(userDto);
+        userService.delete(user);
+        return ResponseEntity.ok(null);
+    }
+
 
 }
