@@ -1,6 +1,8 @@
 package fr.finkit.demeter.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import fr.finkit.demeter.entity.BesoinSoleil;
+import fr.finkit.demeter.entity.Famille;
 import fr.finkit.demeter.entity.PlantType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,10 +41,10 @@ public class PlantDto implements Serializable {
     private String frequenceArrosage;
 
     @JsonProperty
-    private String famille;
+    private Famille famille;
 
     @JsonProperty
-    private String besoinSoleil;
+    private BesoinSoleil besoinSoleil;
 
     @JsonProperty
     private PlantType plantType;

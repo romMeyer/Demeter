@@ -1,9 +1,9 @@
-INSERT INTO plant (name,type_id,image_name,description,debut_recolte,fin_recolte,besoin_soleil_id,frequence_arrosage,famille) VALUES
-('Chou',2,'chou','Légume-feuille utilisé en soupe, salade ou fermenté.','09','02',2,5,'Brassicaceae'),
-('Aubergine',2,'aubergine','Légume violet, idéal pour les gratins et ratatouilles.','07','09',3,3,'Solanaceae'),
-('Butternut',2,'butternut','Courge douce et sucrée, parfaite en soupe ou gratin.','09','11',3,7,'Cucurbitaceae'),
-('Navet',2,'navet','Légume-racine au goût doux, utilisé en pot-au-feu.','10','04',2,4,'Brassicaceae'),
-('Salade',2,'salade','Feuilles vertes croquantes, base des entrées fraîches.','04','10',2,2,'Asteraceae'),
+INSERT INTO demeter.plant (name,type_id,image_name,description,debut_recolte,fin_recolte,besoin_soleil_id,frequence_arrosage,famille) VALUES
+('Chou',2,'chou','[translate:Légume-feuille utilisé en soupe, salade ou fermenté.]','09','02',2,5,'Brassicaceae'),
+('Aubergine',2,'aubergine','[translate:Légume violet, idéal pour les gratins et ratatouilles.]','07','09',3,3,'Solanaceae'),
+('Butternut',2,'butternut','[translate:Courge douce et sucrée, parfaite en soupe ou gratin.]','09','11',3,7,'Cucurbitaceae'),
+('Navet',2,'navet','[translate:Légume-racine au goût doux, utilisé en pot-au-feu.]','10','04',2,4,'Brassicaceae'),
+('Salade',2,'salade','[translate:Feuilles vertes croquantes, base des entrées fraîches.]','04','10',2,2,'Asteraceae'),
 ('Poireau',2,'poireau','Légume tige long et fin, utilisé en soupe et pot-au-feu.','09','02',2,5,'Amaryllidaceae'),
 ('Courgette',2,'courgette','Légume fruit vert tendre, cuisiné grillé ou en ratatouille.','06','09',3,3,'Cucurbitaceae'),
 ('Haricot vert',2,'haricot','Gousse verte fine et croquante, consommée entière.','07','09',3,4,'Fabaceae'),

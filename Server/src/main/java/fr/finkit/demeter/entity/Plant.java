@@ -35,9 +35,6 @@ public class Plant implements Serializable {
     @Column(name = "frequence_arrosage")
     private Integer frequenceArrosage;
 
-    @Column(name = "famille")
-    private String famille;
-
     @Column(name = "fin_recolte")
     private String finRecolte;
 
@@ -48,6 +45,10 @@ public class Plant implements Serializable {
     @JoinColumn(name = "besoin_soleil_id")
     @ManyToOne(fetch = FetchType.EAGER)
     private BesoinSoleil besoinSoleil;
+
+    @JoinColumn(name = "famille_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Famille famille;
 
     @OneToMany(mappedBy = "plant", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<Recette> recettes = new HashSet<>();
