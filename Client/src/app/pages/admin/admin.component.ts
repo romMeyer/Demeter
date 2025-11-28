@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { ToastService } from '../../services/toast.service';
 import { DialogueComponent } from '../../shared/dialogue/dialogue.component';
+import { FamilleService } from '../../services/famille.service';
+import { FamilleDto } from '../../core/Dto/FamilleDto';
 
 @Component({
   selector: 'app-admin',
@@ -27,16 +29,11 @@ export class AdminComponent {
   selectedUser: any = null;
 
   // fetch users
-  usersSubject: BehaviorSubject<UserDto[]> = new BehaviorSubject<UserDto[]>([]);
-  users$ = this.usersSubject.asObservable();
   dataSource = new MatTableDataSource<UserDto>();
+
+  // fetch familles
+  plantFamille: FamilleDto[] = [];
   
-
-
-  /*users: UserDto[] = [
-    {firstname: "Romain", lastname: "Meyer", name: "admin@gmail.com", role: Role.ADMIN},
-    {firstname: "Clara", lastname: "Petit", name: "clara.petit@gmail.com", role: Role.USER}
-  ];*/
 
   plantTypes = [
      {id: 1, libelle: "Fruit"},
@@ -64,11 +61,7 @@ export class AdminComponent {
      {id: 3, libelle: "Beaucoup"}
   ]
 
-  plantFamille = [
-     {id: 1, libelle: "Crétacé"}
-  ]
-
-  constructor(private fb: FormBuilder, private authService: AuthService, private adminService: AdminService, private toastService:  ToastService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private adminService: AdminService, private toastService:  ToastService, private familleService: FamilleService) {
 
     this.plantForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -87,6 +80,7 @@ export class AdminComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.fetchUsers();
+    this.fetchFamille();
   }
 
   fetchUsers() {
@@ -98,6 +92,13 @@ export class AdminComponent {
         console.error(err);
       }
     });
+  }
+
+  fetchFamille() {
+    this.familleService.getFamilles().subscribe({
+      next: (res) => this.plantFamille = res,
+      error: (e) => console.log(e)
+    })
   }
 
   onSubmitPlant() {

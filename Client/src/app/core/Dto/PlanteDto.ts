@@ -1,5 +1,5 @@
-import { BesoinSoleil } from "./BesoinSoleil";
-import { Famille } from "./Famille";
+import { BesoinSoleil } from "./BesoinSoleilDto";
+import { FamilleDto } from "./FamilleDto";
 import { PlantType } from "./PlantType";
 import { RecetteDto } from "./RecetteDto";
 
@@ -18,7 +18,7 @@ export interface PlanteDto{
     description: string;
     debutRecolte?: string;
     finRecolte?: string;
-    famille: Famille;
+    famille: FamilleDto;
     besoinSoleil: BesoinSoleil;
     frequenceArrosage: number;
     recetteList: RecetteDto[];
