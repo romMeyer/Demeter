@@ -82,6 +82,7 @@
           <mat-select formControlName="besoin_soleil">
             <mat-option *ngFor="let besoin of plantBesoinSoleil" [value]="besoin.id">
               {{ besoin.libelle }}
+              89
             </mat-option>
           </mat-select>
           <mat-error *ngIf="isSubmitted && besoin_soleil?.errors?.['required']">
