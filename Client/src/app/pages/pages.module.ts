@@ -16,6 +16,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { EditUserComponent } from "./admin/edit-user/edit-user.component";
 import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from "@angular/material/dialog";
+import { PlantDialogComponent } from "./admin/plant-dialog/plant-dialog.component";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } fr
     EditUserComponent,
     HomeComponent,
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    PlantDialogComponent
     
   ],
   imports: [

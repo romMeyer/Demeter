@@ -20,6 +20,10 @@ export class PlanteService {
   }
 
   getPlantById(plantId: number): Observable<PlanteDto> {
-    return this.http.get<PlanteDto>(`${this.apiUrl}/api-open/plants/${plantId}`)
+    return this.http.get<PlanteDto>(`${this.apiUrl}/api-open/plants/${plantId}`);
+  }
+
+  createPlante(plant: PlanteDto): Observable<PlanteDto> {
+    return this.http.post<PlanteDto>(`${this.apiUrl}/api/plants`, plant);
   }
 }

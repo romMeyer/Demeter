@@ -1,0 +1,24 @@
+@use "../../../../styles.scss" as styles;
+
+mat-card-title{
+  font-size: 23px;
+  padding: 20px;
+  background-color: rgba(styles.$primary-color, 0.7);
+
+}
+
+mat-label{
+  font-size: 18px;
+}
+
+mat-form-field{
+  padding: 5px;
+  width: 45%;
+}
+
+mat-dialog-content {
+  background-color: rgba(styles.$primary-color, 0.5);
+}
+mat-dialog-actions {
+  background-color: rgba(styles.$primary-color, 0.7);
+}
