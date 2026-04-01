@@ -7,7 +7,7 @@
     <mat-form-field appearance="outline" class="w-100 mb-16">
       <mat-label>Name</mat-label>
       <input matInput formControlName="name" type="text" />
-      <mat-error *ngIf="isSubmitted && name?.errors?.['required']">
+      <mat-error *ngIf="isSubmitted && name?.errors">
         Ce champ est requis.
       </mat-error>
       <mat-error *ngIf="isSubmitted && name?.errors?.['minlength']">
@@ -23,7 +23,7 @@
           {{ type.name }}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="isSubmitted && type?.errors?.['required']">
+      <mat-error *ngIf="isSubmitted && type?.errors">
         Ce champ est requis.
       </mat-error>
     </mat-form-field>
@@ -32,7 +32,7 @@
     <mat-form-field appearance="outline" class="w-100 mb-16">
       <mat-label>Image</mat-label>
       <input matInput formControlName="image" type="text" />
-      <mat-error *ngIf="isSubmitted && image?.errors?.['required']">
+      <mat-error *ngIf="isSubmitted && image?.errors">
         Ce champ est requis.
       </mat-error>
       <mat-error *ngIf="isSubmitted && image?.errors?.['minlength']">
@@ -44,7 +44,7 @@
     <mat-form-field appearance="outline" class="w-100 mb-16">
       <mat-label>Description</mat-label>
       <input matInput formControlName="description" type="text" />
-      <mat-error *ngIf="isSubmitted && description?.errors?.['required']">
+      <mat-error *ngIf="isSubmitted && description?.errors">
         Ce champ est requis.
       </mat-error>
       <mat-error *ngIf="isSubmitted && description?.errors?.['minlength']">
@@ -80,7 +80,7 @@
           {{ besoin.name }}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="isSubmitted && besoin_soleil?.errors?.['required']">
+      <mat-error *ngIf="isSubmitted && besoin_soleil?.errors">
         Ce champ est requis.
       </mat-error>
     </mat-form-field>
@@ -89,7 +89,7 @@
     <mat-form-field appearance="outline" class="w-100 mb-16">
       <mat-label>Fréquence d'arrosage (j)</mat-label>
       <input matInput formControlName="freq_arrosage" type="text" />
-      <mat-error *ngIf="isSubmitted && freq_arrosage?.errors?.['required']">
+      <mat-error *ngIf="isSubmitted && freq_arrosage?.errors">
         Ce champ est requis.
       </mat-error>
     </mat-form-field>
@@ -102,7 +102,7 @@
   {{ famille.name }}
 </mat-option>
       </mat-select>
-      <mat-error *ngIf="isSubmitted && famille?.errors?.['required']">
+      <mat-error *ngIf="isSubmitted && famille?.errors">
         Ce champ est requis.
       </mat-error>
     </mat-form-field>

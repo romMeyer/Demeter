@@ -22,7 +22,6 @@ import { PlanteService } from '../../services/plante.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
-  plantForm: FormGroup;
   isSubmitted = false;
   displayedColumns: string[] = ['Role', 'Name', 'FirstName', 'LastName', "Action"];
   Role = Role;
@@ -36,13 +35,10 @@ export class AdminComponent {
 
   // fetch familles
   plantFamille: FamilleDto[] = [];
-  
-
   plantTypes = [
      {id: 1, name: "Fruit"},
      {id: 2, name: "Légume"}
   ]
-
   plantBesoinSoleil = [
      {id: 1, name: "Peu"},
      {id: 2, name: "Moyen"},
@@ -50,25 +46,11 @@ export class AdminComponent {
   ]
 
   constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
     private adminService: AdminService,
     private toastService:  ToastService,
     private familleService: FamilleService,
     private planteService: PlanteService
   ) {
-
-    this.plantForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      type: ['', [Validators.required]],
-      image: ['', [Validators.required, Validators.minLength(3)]],
-      description: ['', [Validators.required, Validators.minLength(3)]],
-      deb_recolte: ['', []],
-      fin_recolte: ['', []],
-      besoin_soleil: ['', [Validators.required]],
-      freq_arrosage: ['', [Validators.required]],
-      famille: ['', [Validators.required, Validators.minLength(3)]]
-    });
   }
 
   ngOnInit(): void {

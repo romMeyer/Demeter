@@ -12,7 +12,6 @@ import { PlantType } from '../../../core/Dto/PlantType';
   styleUrls: ['./plant-dialog.component.scss']
 })
 export class PlantDialogComponent implements OnInit {
-  private dialogData = Inject(MAT_DIALOG_DATA);
   plantForm: FormGroup;
   isSubmitted = false;
 
@@ -59,7 +58,7 @@ export class PlantDialogComponent implements OnInit {
       deb_recolte: [''],
       fin_recolte: [''],
       besoin_soleil: ['', Validators.required],
-      freq_arrosage: ['', Validators.required],
+      freq_arrosage: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       famille: ['', Validators.required]
     });
 

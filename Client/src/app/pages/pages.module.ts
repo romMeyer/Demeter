@@ -50,6 +50,7 @@ import { PlantDialogComponent } from "./admin/plant-dialog/plant-dialog.componen
   providers: [
     AdminComponent,
     EditUserComponent,
+    PlantDialogComponent,
     HomeComponent,
     LoginComponent,
     NotFoundComponent
