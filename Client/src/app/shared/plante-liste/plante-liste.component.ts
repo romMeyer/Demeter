@@ -63,7 +63,7 @@ export class PlanteListeComponent {
     let isPlant = (data as PlanteUserDto).plant == null;
     let plantId = isPlant ? (data as PlanteCatalogueDto).id : (data as PlanteUserDto).plant.id
     this.plantService.getPlantById(plantId).subscribe({
-      next: (data) =>{ 
+      next: (data) =>{
         const dialogRef = this.dialog.open(PlantInformationComponent, {
           data: {plant: data },
         });
@@ -72,8 +72,11 @@ export class PlanteListeComponent {
         this.toastService.error('Internal Server Error');
       }
     })
-    
-    
-      
+
+  }
+
+  onImageError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    img.src = 'assets/images/placeholder.png';
   }
 }
