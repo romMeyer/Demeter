@@ -29,6 +29,7 @@ logging:
     org:
       springframework:
         web: INFO
+        demeter: DEBUG
 
 security:
   jwt:

@@ -1,0 +1,31 @@
+services:
+  demeter-server:
+    build:
+      context: .
+      dockerfile: Server/Dockerfile
+    container_name: demeter-server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - demeter_postgres
+
+  demeter-client:
+    build:
+      context: ./Client
+      dockerfile: Dockerfile
+    container_name: demeter-client
+    ports:
+      - "4200:4200"
+    depends_on:
+      - demeter-server
+
+  demeter_postgres:
+    image: postgres:16.2
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=demeter
+      - POSTGRES_USER=demeter
+      - POSTGRES_DB=demeter
