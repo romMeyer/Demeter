@@ -34,4 +34,4 @@ logging:
 security:
   jwt:
     expiration-time: 3600000
-    secret-key: "96a267d6346ea55f2009af5036991aa2e5ac6017cc6e577e54f22c567cd92863"
+    secret-key: "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9"
